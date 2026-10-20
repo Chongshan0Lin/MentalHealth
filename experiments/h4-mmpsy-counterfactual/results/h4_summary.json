@@ -1,0 +1,29 @@
+{
+  "SFT|seg_minus": {
+    "mean_p": 0.4686740969881383
+  },
+  "SFT|native": {
+    "mean_p": 0.4730291100667604
+  },
+  "SFT|seg_plus": {
+    "mean_p": 0.473260826028635
+  },
+  "RL|seg_minus": {
+    "mean_p": 0.35192897945896867
+  },
+  "RL|native": {
+    "mean_p": 0.3552807750524184
+  },
+  "RL|seg_plus": {
+    "mean_p": 0.35600710379562117
+  },
+  "HARPO|seg_minus": {
+    "mean_p": 0.16043973231879316
+  },
+  "HARPO|native": {
+    "mean_p": 0.15829115845855568
+  },
+  "HARPO|seg_plus": {
+    "mean_p": 0.16153627038230167
+  }
+}

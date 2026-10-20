@@ -1,0 +1,36 @@
+loaded experiments/a2-ellie-counterfactual/results/a2b_MentaLLaMA-chat-7B.jsonl
+model=MentaLLaMA-chat-7B  n=188  positives=55  truncated C: 35/188
+
+====================================================================================================
+PER-ARM (participant evidence byte-identical throughout)
+====================================================================================================
+arm               mean p(dep)           [95% CI]     acc     AUC  P(pred=Yes)
+----------------------------------------------------------------------------------------------------
+cf_none                0.4458 [0.4239, 0.4661]   0.707   0.777        0.351
+cf_neutral             0.3730 [0.3538, 0.3931]   0.750   0.764        0.160
+cf_depression          0.5787 [0.5607, 0.5962]   0.495   0.734        0.745
+cf_empirical           0.4965 [0.4791, 0.5150]   0.654   0.729        0.447
+
+====================================================================================================
+CF-SENSITIVITY -- paired within participant
+====================================================================================================
+  CONFIRMATORY: clinical vs biographical
+    Δp(dep) = +0.2057  [+0.1945, +0.2168]    ***   |Δ| mean 0.2057   pred flips 0.585
+  EXPLORATORY:  A2a-derived vs biographical
+    Δp(dep) = +0.1236  [+0.1152, +0.1321]    ***   |Δ| mean 0.1236   pred flips 0.287
+  clinical vs no interviewer
+    Δp(dep) = +0.1329  [+0.1214, +0.1440]    ***   |Δ| mean 0.1332   pred flips 0.394
+  biographical vs no interviewer
+    Δp(dep) = -0.0728  [-0.0793, -0.0663]    ***   |Δ| mean 0.0729   pred flips 0.191
+  A2a-derived vs no interviewer
+    Δp(dep) = +0.0507  [+0.0417, +0.0597]    ***   |Δ| mean 0.0647   pred flips 0.128
+
+====================================================================================================
+BY TRUE LABEL -- does interviewer context move the two groups differently?
+====================================================================================================
+  CONFIRMATORY: clinical vs biographical
+    depressed       n= 55  Δ = +0.1826 [+0.1622, +0.2035]
+    not depressed   n=133  Δ = +0.2153 [+0.2024, +0.2284]
+  EXPLORATORY:  A2a-derived vs biographical
+    depressed       n= 55  Δ = +0.1019 [+0.0882, +0.1157]
+    not depressed   n=133  Δ = +0.1325 [+0.1225, +0.1429]

@@ -1,0 +1,291 @@
+#!/usr/bin/env python3
+"""D3 / M1 / M2 -- the train-time intervention arm.
+
+  D3  counterfactual augmentation : add (C, S', Y) copies to the training set
+  M1  product of experts          : train against a bias-only model of S
+  M2  group DRO                   : minimise worst-group loss over g = (Y, s-hat)
+
+RESERVATION, RECORDED ONCE AND THEN SET ASIDE.
+B0-mech and its replication measured the DAIC-trained encoder as *encoding* the
+interviewer shortcut (ellie_only AUC 0.620-0.712) while being essentially
+*unmoved* by it (CF-Sens 0.0096-0.101, neutral-clinical accuracy gap ~0 across
+three readouts and two checkpoints), and encoder-side D1 changed test AUC by
+0.002. All three methods below remove a counterfactual reliance on S. On this
+arm there may be no such reliance to remove, in which case these return nulls.
+Run at the PI's explicit direction to fill the matrix; the nulls, if they come,
+are interpretable in exactly that light and should be reported that way rather
+than as evidence the methods do not work in general.
+
+Bias model for M1/M2 is the A2a question-selection probe, refit on the 47
+question-like prompt IDs (CV AUC 0.773; the published 0.753 included 28
+backchannels that diluted it -- see ../../suite/analysis.md).
+
+n_train = 107 with 4-6 groups leaves ~10-35 examples per cell. Sagawa et al.
+(2019) additionally show naive group DRO fails on overparameterised nets without
+strong regularisation, so M2 runs plain and with heavy L2. If seed spread swamps
+the effect that IS the finding, reported as an n-limit.
+"""
+from __future__ import annotations
+
+import argparse, collections, importlib.util, json, os, re, sys, time
+import numpy as np
+import torch
+import torch.nn as nn
+from sklearn.linear_model import LogisticRegression
+
+ROOT = "/data/cl195/NeurIPS_workshop"
+COND = f"{ROOT}/data/processed/daic_conditions.jsonl"
+OUT = f"{ROOT}/experiments/i6-encoder-interventions/results"
+PAT = re.compile(r"^Ellie: ([A-Za-z][A-Za-z0-9_]*) \((.*)\)\s*$")
+
+_b0 = importlib.util.spec_from_file_location(
+    "b0", f"{ROOT}/experiments/b0-encoder-mechanism/code/run_b0_mech.py")
+b0 = importlib.util.module_from_spec(_b0)
+sys.modules["b0"] = b0
+_b0.loader.exec_module(b0)
+ChunkedEncoder, chunk, auc = b0.ChunkedEncoder, b0.chunk, b0.auc
+best_threshold, acc_opt = b0.best_threshold, b0.acc_opt
+POOLS, interleave = b0.POOLS, b0.interleave
+
+
+def bias_model(rows, fit_splits=None):
+    """A2a question-selection probe -> p_bias(y=1 | S) per participant.
+
+    Participants with no scripted IDs (65/188) have no S to read, so they get
+    the training base rate. That is the honest default: the bias model claims
+    no information where none is observable.
+
+    `fit_splits` restricts which splits contribute LABELS to the fit. The
+    original run left it None, i.e. fitted on all 123 ID-bearing transcripts --
+    30 of which are test. That expert reaches AUC 0.963 on test because it has
+    memorised it, and its scores feed both the PoE loss and the group-DRO group
+    assignment, so test labels reach training indirectly. Passing
+    fit_splits=("train",) is the leak-free version; it fits on 66 transcripts
+    with 47 features and scores 0.721 on test, which is the honest ceiling for
+    this probe at this n. Predictions are still emitted for every row -- only
+    the fitting labels are restricted.
+    """
+    kind = json.load(open(f"{ROOT}/experiments/suite/results/e4a_prompt_kind.json"))
+    feats = sorted(kind["question_like"])
+    ids = {}
+    for r in rows:
+        ids[r["uid"]] = {m.group(1) for m in
+                         (PAT.match(l) for l in (r["text_ellie_only"] or ""
+                                                 ).split("\n")) if m}
+    have = [r for r in rows if ids[r["uid"]]]
+    if fit_splits is not None:
+        have = [r for r in have if r["split"] in fit_splits]
+    X = np.array([[1 if f in ids[r["uid"]] else 0 for f in feats] for r in have])
+    y = np.array([r["phq8_binary"] for r in have])
+    clf = LogisticRegression(max_iter=2000, class_weight="balanced",
+                             C=0.5).fit(X, y)
+    base = float(np.mean([r["phq8_binary"] for r in rows]))
+    out = {}
+    for r in rows:
+        if ids[r["uid"]]:
+            x = np.array([[1 if f in ids[r["uid"]] else 0 for f in feats]])
+            out[r["uid"]] = float(clf.predict_proba(x)[0, 1])
+        else:
+            out[r["uid"]] = base
+    print(f"bias model: fitted on {len(have)} rows "
+          f"(splits={fit_splits or 'ALL -- LEAKY'}), "
+          f"{len(feats)} features; {len(rows)-len(have)} fall back to "
+          f"base rate {base:.3f}", flush=True)
+    return out
+
+
+AUG_POOLS = {
+    # original: includes cf_empirical, whose five questions were chosen by A2a
+    # odds ratio over all 123 ID-bearing transcripts -- i.e. partly from test
+    # labels. 3 copies per original.
+    "leaky":  ("cf_neutral", "cf_depression", "cf_empirical"),
+    # option B: label-free pools only. 2 copies per original, so the
+    # augmentation RATIO also changes -- confounded against "leaky".
+    "clean":  ("cf_neutral", "cf_depression"),
+    # ratio-matched control: still label-free, but cf_none (no interviewer at
+    # all) restores the 3-copy ratio, so "clean3" vs "leaky" isolates the pool
+    # provenance with the ratio held fixed.
+    "clean3": ("cf_neutral", "cf_depression", "cf_none"),
+}
+
+
+def augment(train, pools="leaky"):
+    """D3: same participant, swapped interviewer pool, label unchanged."""
+    aug = list(train)
+    for r in train:
+        for arm in AUG_POOLS[pools]:
+            aug.append({**r, "text_full":
+                        interleave(r["text_participant_only"],
+                                   POOLS.get(arm, [])),
+                        "_aug": arm})
+    return aug
+
+
+def train_one(ckpt, tok, train, dev, method, seed, device, pbias=None,
+              groups=None, epochs=20, lr=2e-5, patience=5, accum=8, wd=0.01,
+              alpha=1.0):
+    torch.manual_seed(seed); np.random.seed(seed)
+    model = ChunkedEncoder(ckpt).to(device)
+    opt = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=wd)
+    ce = nn.CrossEntropyLoss()
+    ce_none = nn.CrossEntropyLoss(reduction="none")
+
+    ng = (max(groups.values()) + 1) if groups else 1
+    gw = torch.ones(ng, device=device) / ng          # group DRO weights
+
+    def score(rows, field="text_full"):
+        model.eval(); out = []
+        with torch.no_grad():
+            for r in rows:
+                I, M, _ = chunk(tok, r[field], device)
+                z = model(I, M); out.append(float(z[1] - z[0]))
+        return np.array(out)
+
+    y_dev = np.array([r["phq8_binary"] for r in dev])
+    best, best_state, bad = -1.0, None, 0
+    order = np.arange(len(train))
+    for ep in range(epochs):
+        model.train(); np.random.shuffle(order); opt.zero_grad()
+        for k, i in enumerate(order):
+            r = train[i]
+            I, M, _ = chunk(tok, r["text_full"], device)
+            z = model(I, M).unsqueeze(0)
+            t = torch.tensor([r["phq8_binary"]], device=device)
+
+            if method == "M1":
+                # PoE: add the bias model's logits, so examples the bias model
+                # already gets right generate little gradient for the main model
+                pb = pbias[r["uid"]]
+                zb = torch.tensor([[np.log(max(1 - pb, 1e-6)),
+                                    np.log(max(pb, 1e-6))]],
+                                  device=device, dtype=z.dtype)
+                loss = ce(z + alpha * zb, t)
+            elif method == "M2":
+                g = groups[r["uid"]]
+                li = ce_none(z, t)
+                gw_ = gw.clone()
+                gw_[g] = gw_[g] * torch.exp(0.01 * li.detach())
+                gw = (gw_ / gw_.sum()).detach()
+                loss = gw[g] * li.squeeze(0) * ng
+            else:                                    # B0 / D3 -> plain ERM
+                loss = ce(z, t)
+
+            (loss / accum).backward()
+            if (k + 1) % accum == 0 or k == len(order) - 1:
+                opt.step(); opt.zero_grad()
+
+        a = auc(y_dev, score(dev))
+        if a > best:
+            best, bad = a, 0
+            best_state = {k: v.detach().cpu().clone()
+                          for k, v in model.state_dict().items()}
+        else:
+            bad += 1
+            if bad >= patience:
+                break
+    model.load_state_dict(best_state)
+    return model, best, score
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--ckpt", default=f"{ROOT}/checkpoints/MentalBERT")
+    ap.add_argument("--device", default="cuda:0")
+    ap.add_argument("--seeds", type=int, nargs="+", default=[0, 1, 2])
+    ap.add_argument("--methods", default="B0,D3,M1,M2,M2reg")
+    ap.add_argument("--bias-fit-splits", default="all",
+                    help="'all' reproduces the original (leaky) run; "
+                         "'train' fits the bias expert on train labels only")
+    ap.add_argument("--aug-pools", default="leaky",
+                    choices=["leaky", "clean", "clean3"])
+    ap.add_argument("--out", default="encoder_interventions.json",
+                    help="filename under results/ -- do NOT reuse a name that "
+                         "already holds another checkpoint's results")
+    args = ap.parse_args()
+    os.makedirs(OUT, exist_ok=True)
+
+    from transformers import AutoTokenizer
+    tok = AutoTokenizer.from_pretrained(args.ckpt)
+    rows = [json.loads(l) for l in open(COND)]
+    for r in rows:
+        for arm in ["cf_none"] + list(POOLS):
+            r[arm] = interleave(r["text_participant_only"], POOLS.get(arm, []))
+    S = {s: [r for r in rows if r["split"] == s] for s in ("train", "dev", "test")}
+    y_test = np.array([r["phq8_binary"] for r in S["test"]])
+    y_dev = np.array([r["phq8_binary"] for r in S["dev"]])
+
+    E5 = [json.loads(l) for l in open(
+        f"{ROOT}/experiments/suite/results/e5_construct_pairs.jsonl")]
+    print(f"loaded {len(E5)} E5 construct pairs for the SER denominator",
+          flush=True)
+
+    fs = None if args.bias_fit_splits == "all" else tuple(
+        args.bias_fit_splits.split(","))
+    pbias = bias_model(rows, fit_splits=fs)
+    groups = {r["uid"]: 2 * r["phq8_binary"] + int(pbias[r["uid"]] > 0.5)
+              for r in rows}
+    print("group sizes (train):",
+          dict(collections.Counter(groups[r["uid"]] for r in S["train"])),
+          flush=True)
+
+    results = {}
+    for method in args.methods.split(","):
+        tr = (augment(S["train"], args.aug_pools)
+              if method.startswith("D3") else S["train"])
+        wd = 0.1 if method == "M2reg" else 0.01
+        m = ("M2" if method.startswith("M2")
+             else "B0" if method.startswith("D3") else method)
+        aucs, cfs, gaps, css, pas = [], [], [], [], []
+        for sd in args.seeds:
+            t0 = time.time()
+            model, dev_auc, score = train_one(
+                args.ckpt, tok, tr, S["dev"], m, sd, args.device,
+                pbias=pbias, groups=groups, wd=wd)
+            a = auc(y_test, score(S["test"]))
+            # counterfactual sensitivity, same definition as B0-mech M3
+            sig = lambda x: 1 / (1 + np.exp(-x))
+            sd_ = score([{**r, "text_full": r["cf_depression"]} for r in S["test"]])
+            sn_ = score([{**r, "text_full": r["cf_neutral"]} for r in S["test"]])
+            dd = score([{**r, "text_full": r["cf_depression"]} for r in S["dev"]])
+            dn = score([{**r, "text_full": r["cf_neutral"]} for r in S["dev"]])
+            gap = (((sn_ > best_threshold(dn, y_dev)).astype(int) == y_test).mean()
+                   - ((sd_ > best_threshold(dd, y_dev)).astype(int) == y_test).mean())
+            cf = float(np.abs(sig(sd_) - sig(sn_)).mean())
+            # SER denominator: interviewer held fixed, patient swapped
+            pos = score([{"text_full": p["pos"]["text"]} for p in E5])
+            neg = score([{"text_full": p["neg"]["text"]} for p in E5])
+            csens = float(np.abs(sig(pos) - sig(neg)).mean())
+            pair_acc = float((pos > neg).mean())
+            aucs.append(a); cfs.append(cf); gaps.append(float(gap))
+            css.append(csens); pas.append(pair_acc)
+            print(f"  {method} seed{sd}: dev {dev_auc:.3f} | test AUC {a:.3f} "
+                  f"| CF-Sens {cf:.4f} | C-Sens {csens:.4f} "
+                  f"| pair {pair_acc:.3f} | gap {gap:+.3f} "
+                  f"({time.time()-t0:.0f}s, n_train={len(tr)})", flush=True)
+        results[method] = dict(auc=aucs, cf_sens=cfs, gap=gaps,
+                               c_sens=css, pair_acc=pas,
+                               c_sens_mean=float(np.mean(css)),
+                               ser=float(np.mean(cfs) / max(np.mean(css), 1e-9)),
+                               auc_mean=float(np.mean(aucs)),
+                               auc_sd=float(np.std(aucs)),
+                               cf_mean=float(np.mean(cfs)))
+        print(f"{method}: AUC {np.mean(aucs):.3f} (sd {np.std(aucs):.3f}) | "
+              f"CF-Sens {np.mean(cfs):.4f} | C-Sens {np.mean(css):.4f} | "
+              f"SER {np.mean(cfs)/max(np.mean(css),1e-9):.2f}\n", flush=True)
+
+    print("=" * 74)
+    print(f"{'method':10s} {'test AUC':>9s} {'sd':>6s} {'CF-Sens':>9s} "
+          f"{'C-Sens':>8s} {'SER':>6s}")
+    print("-" * 74)
+    print("  (B0 ERM from B0-mech: AUC 0.722, CF-Sens 0.0409; its C-Sens is\n"
+          "   measured here as the B0 row below)")
+    for m, r in results.items():
+        print(f"{m:10s} {r['auc_mean']:9.3f} {r['auc_sd']:6.3f} "
+              f"{r['cf_mean']:9.4f} {r['c_sens_mean']:8.4f} {r['ser']:6.2f}")
+    print("\n* B0 ERM from B0-mech, identical protocol and readout")
+    json.dump(results, open(f"{OUT}/{args.out}", "w"), indent=2)
+    print(f"\nwrote {OUT}/encoder_interventions.json")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,61 @@
+{
+ "n": 1300,
+ "n_strategies": 8,
+ "strategies": [
+  "Affirmation and Reassurance",
+  "Information",
+  "Others",
+  "Providing Suggestions",
+  "Question",
+  "Reflection of feelings",
+  "Restatement or Paraphrasing",
+  "Self-disclosure"
+ ],
+ "targets": {
+  "problem_type": {
+   "n": 1205,
+   "n_classes": 5,
+   "chance": 0.2,
+   "majority": 0.29128630705394193,
+   "seeker text (the construct)": 0.7802834489726257,
+   "supporter text": 0.6983493256431398,
+   "situation field (pre-dialogue)": 0.8056911580936653,
+   "first seeker turn only": 0.3540960726231836,
+   "STRATEGY counts + proportions, no text": 0.21581556498902987,
+   "STRATEGY sequence n-grams, no text": 0.22104470073517857,
+   "dialogue length (turns, words)": 0.21021420497730073,
+   "seeker survey ratings": 0.22794171065896052,
+   "stopwords only (seeker text)": 0.4176590391518358
+  },
+  "emotion_type": {
+   "n": 1284,
+   "n_classes": 7,
+   "chance": 0.14285714285714285,
+   "majority": 0.2757009345794392,
+   "seeker text (the construct)": 0.3440520349345301,
+   "supporter text": 0.2819449868476958,
+   "situation field (pre-dialogue)": 0.35197075148876017,
+   "first seeker turn only": 0.24804236361280932,
+   "STRATEGY counts + proportions, no text": 0.14403842127372382,
+   "STRATEGY sequence n-grams, no text": 0.17072143348719163,
+   "dialogue length (turns, words)": 0.15911907677487644,
+   "seeker survey ratings": 0.17967428762839344,
+   "stopwords only (seeker text)": 0.23014065814083215
+  },
+  "experience_type": {
+   "n": 1300,
+   "n_classes": 2,
+   "chance": 0.5,
+   "majority": 0.7623076923076924,
+   "seeker text (the construct)": 0.5927887122179443,
+   "supporter text": 0.5398255279173837,
+   "situation field (pre-dialogue)": 0.618751612408113,
+   "first seeker turn only": 0.5294086911654731,
+   "STRATEGY counts + proportions, no text": 0.48543036193051375,
+   "STRATEGY sequence n-grams, no text": 0.4965999279382838,
+   "dialogue length (turns, words)": 0.5221932669102831,
+   "seeker survey ratings": 0.49569643512214023,
+   "stopwords only (seeker text)": 0.5515317468870319
+  }
+ }
+}

@@ -1,0 +1,107 @@
+{
+  "CAMS|Question: What cause of depression does this post show?": {
+    "n": 625,
+    "chance": 0.16666666666666666,
+    "text": 0.31058264847785017,
+    "stop": 0.2946235918926319,
+    "register_frac": 0.889108517453215
+  },
+  "DR|Question: Does the poster suffer from depression?": {
+    "n": 405,
+    "chance": 0.5,
+    "text": 0.7662700259256796,
+    "stop": 0.7091670544439275,
+    "register_frac": 0.7855448757957814
+  },
+  "Irf|Question: Does the post show risk of thwarted belongingness?": {
+    "n": 1057,
+    "chance": 0.5,
+    "text": 0.6269296180010466,
+    "stop": 0.6159079016221873,
+    "register_frac": 0.9131667096109246
+  },
+  "Irf|Question: Does the post show risk of perceived burdensomeness?": {
+    "n": 1056,
+    "chance": 0.5,
+    "text": 0.7033255035016748,
+    "stop": 0.6225151159250076,
+    "register_frac": 0.6025565598759158
+  },
+  "MultiWD|Question: Does the spiritual wellness dimension exist in the post?": {
+    "n": 407,
+    "chance": 0.5,
+    "text": 0.5,
+    "stop": 0.494750656167979,
+    "register_frac": NaN
+  },
+  "MultiWD|Question: Does the physical wellness dimension exist in the post?": {
+    "n": 407,
+    "chance": 0.5,
+    "text": 0.6365800865800866,
+    "stop": 0.5597402597402598,
+    "register_frac": 0.4374009508716325
+  },
+  "MultiWD|Question: Does the intellectual wellness dimension exist in the post?": {
+    "n": 407,
+    "chance": 0.5,
+    "text": 0.5711400478341748,
+    "stop": 0.5477411639649216,
+    "register_frac": 0.6710870377288006
+  },
+  "MultiWD|Question: Does the social wellness dimension exist in the post?": {
+    "n": 407,
+    "chance": 0.5,
+    "text": 0.628459409594096,
+    "stop": 0.5933362274799219,
+    "register_frac": 0.7265814763966628
+  },
+  "MultiWD|Question: Does the vocational wellness dimension exist in the post?": {
+    "n": 407,
+    "chance": 0.5,
+    "text": 0.6969537216459591,
+    "stop": 0.5895360765986549,
+    "register_frac": 0.454604644433191
+  },
+  "MultiWD|Question: Does the emotional wellness dimension exist in the post?": {
+    "n": 406,
+    "chance": 0.5,
+    "text": 0.5406895322486186,
+    "stop": 0.49839584447330226,
+    "register_frac": -0.03942428035043823
+  },
+  "SAD|Question: What is the stress cause of this post?": {
+    "n": 684,
+    "chance": 0.1111111111111111,
+    "text": 0.4320627468746635,
+    "stop": 0.19213776294127977,
+    "register_frac": 0.2524575132243963
+  },
+  "dreaddit|Question: Does the poster suffer from stress?": {
+    "n": 414,
+    "chance": 0.5,
+    "text": 0.7000910512922279,
+    "stop": 0.5911213316835151,
+    "register_frac": 0.45539933492795087
+  },
+  "loneliness|Question: Does the poster suffer from loneliness?": {
+    "n": 528,
+    "chance": 0.5,
+    "text": 0.6501421202231814,
+    "stop": 0.5957153384566797,
+    "register_frac": 0.6374982470901698
+  },
+  "swmh|Question: What mental disorder symptoms does this post show?": {
+    "n": 10865,
+    "chance": 0.2,
+    "text": 0.6814434173556094,
+    "stop": 0.3756001397848052,
+    "register_frac": 0.3647368173591651
+  },
+  "t-sid|Question: What mental disorder does this post show?": {
+    "n": 959,
+    "chance": 0.25,
+    "text": 0.599491081609326,
+    "stop": 0.3850184425383133,
+    "register_frac": 0.3863287209407017
+  }
+}

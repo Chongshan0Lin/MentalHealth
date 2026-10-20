@@ -1,0 +1,319 @@
+<title>A2 — the interviewer shortcut is used after all</title>
+<style>
+  :root{
+    --ground:#F6F8FA; --surface:#FFFFFF; --sunk:#EDF1F4;
+    --ink:#131A21; --ink-2:#41505E; --ink-3:#697A88;
+    --rule:#DBE2E8; --rule-2:#C3CEd6;
+    --accent:#0E6B70; --accent-soft:#0E6B7018; --accent-line:#0E6B7055;
+    --warn:#A8402A; --warn-soft:#A8402A16;
+    --pos:#2C6E49;
+    --shadow:0 1px 2px #131a2108, 0 8px 24px -12px #131a2118;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#0D1116; --surface:#151C23; --sunk:#101720;
+      --ink:#E7ECF1; --ink-2:#A9B7C4; --ink-3:#7C8C9A;
+      --rule:#26313B; --rule-2:#36444F;
+      --accent:#49AEB3; --accent-soft:#49AEB31E; --accent-line:#49AEB360;
+      --warn:#E08063; --warn-soft:#E0806318;
+      --pos:#6FBF8E;
+      --shadow:0 1px 2px #0006, 0 10px 28px -14px #0009;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0D1116; --surface:#151C23; --sunk:#101720;
+    --ink:#E7ECF1; --ink-2:#A9B7C4; --ink-3:#7C8C9A;
+    --rule:#26313B; --rule-2:#36444F;
+    --accent:#49AEB3; --accent-soft:#49AEB31E; --accent-line:#49AEB360;
+    --warn:#E08063; --warn-soft:#E0806318;
+    --pos:#6FBF8E;
+    --shadow:0 1px 2px #0006, 0 10px 28px -14px #0009;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    font-size:16.5px; line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px 96px;
+        display:flex; flex-direction:column; gap:0}
+  .measure{max-width:66ch}
+
+  /* ---- masthead ---- */
+  header{padding:64px 0 40px; border-bottom:2px solid var(--ink);}
+  .kicker{font-size:11.5px; letter-spacing:.16em; text-transform:uppercase;
+          color:var(--accent); font-weight:650; margin:0 0 20px;
+          display:flex; gap:14px; flex-wrap:wrap; align-items:baseline}
+  .kicker span{color:var(--ink-3); font-weight:550}
+  h1{font-size:clamp(30px,4.4vw,46px); line-height:1.1; letter-spacing:-.022em;
+     font-weight:720; margin:0 0 18px; text-wrap:balance; max-width:20ch}
+  .standfirst{font-size:19px; line-height:1.55; color:var(--ink-2);
+              margin:0; max-width:60ch}
+  .standfirst b{color:var(--ink); font-weight:650}
+
+  /* ---- sections ---- */
+  section{padding:52px 0; border-bottom:1px solid var(--rule)}
+  section:last-of-type{border-bottom:none}
+  .eyebrow{font-size:11.5px; letter-spacing:.15em; text-transform:uppercase;
+           color:var(--ink-3); font-weight:650; margin:0 0 10px}
+  .eyebrow b{color:var(--accent); font-weight:700}
+  h2{font-size:25px; line-height:1.25; letter-spacing:-.016em; font-weight:690;
+     margin:0 0 18px; text-wrap:balance; max-width:26ch}
+  h3{font-size:16px; font-weight:670; margin:32px 0 10px; letter-spacing:-.006em}
+  p{margin:0 0 15px}
+  .measure p:last-child{margin-bottom:0}
+
+  /* ---- the contradiction ---- */
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:1px;
+         background:var(--rule); border:1px solid var(--rule);
+         border-radius:3px; overflow:hidden; margin:30px 0 8px}
+  .split>div{background:var(--surface); padding:24px 22px}
+  .split .q{font-size:14px; color:var(--ink-2); margin:0 0 16px; min-height:3.2em}
+  .split .a{font-size:30px; font-weight:700; letter-spacing:-.02em;
+            font-variant-numeric:tabular-nums; margin:0 0 4px}
+  .split .note{font-size:13px; color:var(--ink-3); margin:0}
+  .no .a{color:var(--ink-3)}
+  .yes .a{color:var(--warn)}
+
+  /* ---- figure ---- */
+  figure{margin:34px 0 0; background:var(--surface); border:1px solid var(--rule);
+         border-radius:3px; box-shadow:var(--shadow); overflow:hidden}
+  .figbody{padding:22px 20px 8px; overflow-x:auto}
+  svg{display:block; width:100%; min-width:600px; height:auto}
+  figcaption{padding:14px 20px 18px; border-top:1px solid var(--rule);
+             font-size:13.5px; color:var(--ink-2); line-height:1.5}
+  figcaption b{color:var(--ink)}
+  .legend{display:flex; gap:20px; flex-wrap:wrap; padding:0 20px 14px;
+          font-size:13px; color:var(--ink-2)}
+  .legend i{display:inline-block; width:22px; height:9px; border-radius:2px;
+            margin-right:7px; vertical-align:baseline}
+
+  /* ---- tables ---- */
+  .twrap{overflow-x:auto; margin:26px 0 0; border:1px solid var(--rule);
+         border-radius:3px; background:var(--surface)}
+  table{border-collapse:collapse; width:100%; font-size:14.5px; min-width:520px}
+  th,td{padding:11px 14px; text-align:right; border-bottom:1px solid var(--rule)}
+  th:first-child,td:first-child{text-align:left}
+  thead th{font-size:11.5px; letter-spacing:.08em; text-transform:uppercase;
+           color:var(--ink-3); font-weight:650; background:var(--sunk);
+           border-bottom:1px solid var(--rule-2)}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{font-variant-numeric:tabular-nums}
+  td.hero{font-weight:700; color:var(--warn)}
+  td.good{font-weight:700; color:var(--pos)}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13px}
+
+  /* ---- transcript excerpt: document of record ---- */
+  .excerpt{font-family:ui-serif,Georgia,"Times New Roman",serif;
+           font-size:16px; line-height:1.72; background:var(--sunk);
+           border-left:2px solid var(--accent-line); padding:18px 22px;
+           margin:26px 0; border-radius:0 3px 3px 0}
+  .excerpt .spk{color:var(--accent); font-family:ui-sans-serif,system-ui,sans-serif;
+                font-size:11.5px; letter-spacing:.1em; text-transform:uppercase;
+                font-weight:650; display:block; margin-bottom:3px}
+  .excerpt p{margin:0 0 14px}
+  .excerpt p:last-child{margin:0}
+
+  /* ---- callout ---- */
+  .callout{background:var(--accent-soft); border:1px solid var(--accent-line);
+           border-radius:3px; padding:20px 22px; margin:28px 0 0}
+  .callout p{margin:0; font-size:15.5px; color:var(--ink)}
+  .callout .lbl{font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+                color:var(--accent); font-weight:700; margin:0 0 9px}
+
+  /* ---- status ---- */
+  ul.status{list-style:none; padding:0; margin:22px 0 0;
+            display:flex; flex-direction:column; gap:1px;
+            background:var(--rule); border:1px solid var(--rule); border-radius:3px}
+  ul.status li{background:var(--surface); padding:13px 18px; display:flex;
+               gap:16px; align-items:baseline; font-size:14.5px}
+  ul.status .st{font-size:11px; letter-spacing:.09em; text-transform:uppercase;
+                font-weight:700; min-width:88px}
+  .st.done{color:var(--pos)} .st.run{color:var(--accent)} .st.wait{color:var(--ink-3)}
+  ul.status .d{color:var(--ink-2); font-size:13.5px}
+
+  footer{padding:40px 0 0; color:var(--ink-3); font-size:13px}
+
+  @media (max-width:720px){
+    .split{grid-template-columns:1fr}
+    .wrap{padding:0 20px 72px}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header>
+  <p class="kicker">Experiment A2 · DAIC-WOZ counterfactual <span>2026-08-20</span> <span>MentaLLaMA-chat-7B · n = 188</span></p>
+  <h1>The interviewer shortcut is used after all</h1>
+  <p class="standfirst">A1 concluded the models ignore the DAIC interviewer shortcut. A2 holds the patient's words <b>byte-identical</b> and swaps only the interviewer's questions — and the prediction moves by <b>+0.206</b>, flipping <b>58.5%</b> of cases. Both results are correct. The ablation was simply blind to this.</p>
+</header>
+
+<section>
+  <p class="eyebrow"><b>The contradiction</b> — and why it isn't one</p>
+  <h2>Ablation and counterfactual ask different questions</h2>
+  <div class="measure">
+    <p>A1 gave the model Ellie's turns alone and asked whether the label could be recovered from them. It could not. We read that as "the model doesn't use the interviewer." That inference does not follow.</p>
+  </div>
+
+  <div class="split">
+    <div class="no">
+      <p class="q">A1 — ablation:<br>can the label be <em>decoded</em> from the interviewer's turns alone?</p>
+      <p class="a">AUC 0.546</p>
+      <p class="note">At the label-shuffle floor (0.572). No.</p>
+    </div>
+    <div class="yes">
+      <p class="q">A2 — counterfactual:<br>does the interviewer <em>move the prediction</em> when patient evidence is fixed?</p>
+      <p class="a">Δp = +0.206</p>
+      <p class="note">95% CI [+0.195, +0.217]. 58.5% of predictions flip.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p class="lbl">The methodological finding</p>
+    <p>A model can be unable to read a signal and still be governed by it. Ablation cannot detect that case — removing the side channel removes any entangled legitimate signal at the same time. <b>Any benchmark audited by ablation alone can carry an effect this size undetected.</b></p>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow"><b>A2a</b> — the mechanism, measured in the corpus</p>
+  <h2>Which questions the clinician chose to ask carries the diagnosis</h2>
+  <div class="measure">
+    <p>The DAIC interview is adaptive: the interviewer follows up on what the patient discloses. So question <em>selection</em> is itself a clinical judgement, and it leaks. These are not subtle effects — four prompt IDs survive Benjamini-Hochberg correction across 75 tested.</p>
+  </div>
+
+  <div class="twrap">
+    <table>
+      <thead><tr><th>Scripted prompt</th><th>Odds ratio</th><th>Asked</th><th>Not asked</th></tr></thead>
+      <tbody>
+        <tr><td>“what got you to seek help”</td><td class="num hero">11.26</td><td class="num">0.56</td><td class="num">0.10</td></tr>
+        <tr><td>“do you still go to therapy now”</td><td class="num hero">10.42</td><td class="num">0.54</td><td class="num">0.10</td></tr>
+        <tr><td>“are they triggered by something”</td><td class="num">8.50</td><td class="num">0.58</td><td class="num">0.14</td></tr>
+        <tr><td>“how long ago were you diagnosed”</td><td class="num">8.24</td><td class="num">0.53</td><td class="num">0.12</td></tr>
+        <tr><td>“how would your best friend describe you”</td><td class="num">0.28</td><td class="num">0.18</td><td class="num">0.45</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:13.5px;color:var(--ink-3);margin:10px 0 0">Depression rate among patients asked each prompt vs not asked. The last row is the same mechanism inverted — the default script, reached when there is no clinical thread to follow.</p>
+
+  <div class="excerpt">
+    <span class="spk">Ellie</span>
+    <p>do you still go to therapy now</p>
+    <span class="spk">Why this leaks</span>
+    <p>The question is only reachable once therapy has already been disclosed. The interviewer's path through the protocol encodes what she has learned — before the patient says another word.</p>
+  </div>
+
+  <div class="callout">
+    <p class="lbl">Question selection alone</p>
+    <p>A binary <em>asked / not-asked</em> matrix over 75 prompt IDs — no text, no phrasing, no counts — predicts depression at <b>AUC 0.753</b> (sd 0.025 over 10 CV seeds; shuffled 0.500).</p>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow"><b>A2b</b> — the effect on the model</p>
+  <h2>The threshold is dragged; the ranking is left intact</h2>
+  <div class="measure">
+    <p>Each patient's own turns are truncated once and reused verbatim across all arms. Only the five interleaved interviewer questions differ. This is the whole intervention.</p>
+  </div>
+
+  <figure>
+    <div class="figbody">
+      <svg viewBox="0 0 760 292" role="img" aria-label="Distribution of predicted depression probability under biographical versus clinical interviewer questions, showing the mass sliding across the 0.5 decision threshold.">
+        <!-- grid -->
+        <g stroke="var(--rule)" stroke-width="1">
+          <line x1="64" y1="244" x2="712" y2="244"/>
+          <line x1="64" y1="24" x2="64" y2="244"/>
+        </g>
+        <!-- threshold -->
+        <line x1="388" y1="18" x2="388" y2="252" stroke="var(--ink-3)" stroke-width="1.25" stroke-dasharray="3 3"/>
+        <text x="393" y="30" font-size="11.5" fill="var(--ink-3)" font-weight="600">decision threshold p = 0.5</text>
+
+        <!-- neutral -->
+        <path d="M 64.0 244.0 L 64.0 244.0 L 96.4 244.0 L 96.4 238.5 L 128.8 238.5 L 128.8 222.0 L 161.2 222.0 L 161.2 194.5 L 193.6 194.5 L 193.6 40.5 L 226.0 40.5 L 226.0 150.5 L 258.4 150.5 L 258.4 128.5 L 290.8 128.5 L 290.8 145.0 L 323.2 145.0 L 323.2 90.0 L 355.6 90.0 L 355.6 161.5 L 388.0 161.5 L 388.0 167.0 L 420.4 167.0 L 420.4 178.0 L 452.8 178.0 L 452.8 238.5 L 485.2 238.5 L 485.2 200.0 L 517.6 200.0 L 517.6 227.5 L 550.0 227.5 L 550.0 244.0 L 582.4 244.0 L 582.4 244.0 L 614.8 244.0 L 614.8 244.0 L 647.2 244.0 L 647.2 244.0 L 679.6 244.0 L 679.6 244.0 L 712.0 244.0 L 712.0 244.0 Z"
+              fill="var(--accent)" fill-opacity=".17" stroke="var(--accent)" stroke-width="1.6"/>
+        <!-- clinical -->
+        <path d="M 64.0 244.0 L 64.0 244.0 L 96.4 244.0 L 96.4 244.0 L 128.8 244.0 L 128.8 244.0 L 161.2 244.0 L 161.2 244.0 L 193.6 244.0 L 193.6 238.5 L 226.0 238.5 L 226.0 227.5 L 258.4 227.5 L 258.4 200.0 L 290.8 200.0 L 290.8 205.5 L 323.2 205.5 L 323.2 161.5 L 355.6 161.5 L 355.6 205.5 L 388.0 205.5 L 388.0 95.5 L 420.4 95.5 L 420.4 51.5 L 452.8 51.5 L 452.8 90.0 L 485.2 90.0 L 485.2 123.0 L 517.6 123.0 L 517.6 150.5 L 550.0 150.5 L 550.0 172.5 L 582.4 172.5 L 582.4 216.5 L 614.8 216.5 L 614.8 244.0 L 647.2 244.0 L 647.2 244.0 L 679.6 244.0 L 679.6 244.0 L 712.0 244.0 L 712.0 244.0 Z"
+              fill="var(--warn)" fill-opacity=".17" stroke="var(--warn)" stroke-width="1.6"/>
+
+        <!-- means -->
+        <g font-size="11" font-weight="650">
+          <line x1="305.7" y1="252" x2="305.7" y2="262" stroke="var(--accent)" stroke-width="2"/>
+          <text x="305.7" y="276" fill="var(--accent)" text-anchor="middle">mean 0.373</text>
+          <line x1="439.0" y1="252" x2="439.0" y2="262" stroke="var(--warn)" stroke-width="2"/>
+          <text x="439.0" y="276" fill="var(--warn)" text-anchor="middle">mean 0.579</text>
+        </g>
+
+        <!-- x axis -->
+        <g font-size="11" fill="var(--ink-3)" text-anchor="middle">
+          <text x="64" y="260">0</text><text x="226" y="260">0.25</text>
+          <text x="550" y="260">0.75</text><text x="712" y="260">1.0</text>
+        </g>
+        <text x="18" y="140" font-size="11" fill="var(--ink-3)" text-anchor="middle" transform="rotate(-90 18 140)">patients</text>
+      </svg>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--accent);opacity:.55"></i>biographical questions — 16.0% above threshold</span>
+      <span><i style="background:var(--warn);opacity:.55"></i>clinical questions — 74.5% above threshold</span>
+    </div>
+    <figcaption><b>Same patients, same words, different interviewer.</b> The distribution slides bodily across a fixed threshold. Accuracy falls from 0.750 to 0.495 — below the 0.707 majority baseline — while AUC barely moves (0.764 → 0.734).</figcaption>
+  </figure>
+
+  <div class="twrap">
+    <table>
+      <thead><tr><th>Interviewer context</th><th>mean p(dep)</th><th>accuracy</th><th>AUC</th><th>P(pred = Yes)</th></tr></thead>
+      <tbody>
+        <tr><td>Biographical — “where are you from originally”</td><td class="num">0.373</td><td class="num good">0.750</td><td class="num">0.764</td><td class="num">0.160</td></tr>
+        <tr><td>None — patient turns only</td><td class="num">0.446</td><td class="num">0.707</td><td class="num">0.777</td><td class="num">0.351</td></tr>
+        <tr><td>Empirically predictive <span class="mono">(A2a-derived)</span></td><td class="num">0.497</td><td class="num">0.654</td><td class="num">0.729</td><td class="num">0.447</td></tr>
+        <tr><td>Clinical — “have you been diagnosed with depression”</td><td class="num">0.579</td><td class="num hero">0.495</td><td class="num">0.734</td><td class="num">0.745</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Why this is a shortcut and not ordinary context sensitivity</h3>
+  <div class="measure">
+    <p>The ranking of patients survives almost untouched — AUC moves 0.764 → 0.734. What moves is the operating point: 16% → 74.5% predicted positive. And both classes shift together, with the <b>non-depressed moving further</b> (+0.215) than the depressed (+0.183).</p>
+    <p>Interviewer context is acting as an additive bias on the decision threshold, not as evidence that sharpens or degrades discrimination. Accuracy collapses because the threshold is dragged across a distribution whose order was left intact.</p>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow"><b>The sharpest result</b></p>
+  <h2>The model reads the wrong half of the side channel</h2>
+  <div class="measure">
+    <p>A2a identified which questions genuinely carry the diagnosis. A2b tested those against questions that merely <em>sound</em> clinical. The clinical-sounding pool moves the model <b>more</b> — +0.206 against +0.124.</p>
+    <p>So the model does exploit the interviewer channel, but keys on surface clinical vocabulary rather than on the adaptive-interview structure that actually predicts the label. It picks up the spurious component and largely misses the informative one.</p>
+  </div>
+  <div class="callout">
+    <p class="lbl">Deployment consequence</p>
+    <p>A clinician who asks more probing questions makes the model more likely to output “depressed” — regardless of what the patient said. The bias-shift result says precisely how: the threshold moves, the ranking does not.</p>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">Status</p>
+  <h2>Where the project stands</h2>
+  <ul class="status">
+    <li><span class="st done">Complete</span><span><b>A1</b> — DAIC ablation ladder <span class="d">· superseded as an interpretation by A2</span></span></li>
+    <li><span class="st done">Complete</span><span><b>A2</b> — Ellie counterfactual <span class="d">· this report</span></span></li>
+    <li><span class="st done">Complete</span><span><b>C1</b> — provenance: template normalisation, TF-IDF and hidden-state probes</span></li>
+    <li><span class="st run">Running</span><span><b>D</b> — SFT → GRPO → HARPO ablation ladder <span class="d">· 3 stages × 300 items, ~2h</span></span></li>
+    <li><span class="st wait">Next</span><span><b>B2</b> — audio/video conflict set <span class="d">· audio-strip verified working; not yet built</span></span></li>
+    <li><span class="st wait">Blocked</span><span><b>C2/C3</b> — rewrite counterfactuals <span class="d">· awaiting your call on sending Reddit data to an external API</span></span></li>
+  </ul>
+
+  <h3>Caveats carried forward</h3>
+  <div class="measure">
+    <p><em>Corrected 2026-08-23:</em> an earlier version of this paragraph stated that the clinical pool is longer than the biographical one. The reverse is true, and it strengthens the headline. Measured from the fixed pools: biographical 50 words / 245 characters, clinical 38 / 204, empirically-predictive 31 / 157. The <strong>shorter</strong> clinical pool raises p(depression) by +0.206, so the length confound runs <em>against</em> the effect rather than producing it.</p>
+    <p>Length matching is still required, but for the other comparison: the “reads the wrong half” dissociation sets the empirically-predictive pool (31 words) against the clinical one (38), so its weaker effect (+0.124 vs +0.206) is partly confoundable with length. That contrast is suggestive, not established, until token-matched pools are run.</p>
+    <p>Pools are fixed across patients rather than using each transcript's real prompts. 35 of 188 transcripts were truncated to fit the context budget — identically across arms, so it cannot produce the contrast. And Menta is saturated (p ≈ 0.97, zero prediction flips in every arm), making it uninformative here rather than contradictory.</p>
+  </div>
+</section>
+
+<footer>
+  Generated from <span class="mono">experiments/a2-ellie-counterfactual/</span> · protocol locked before results · MentaLLaMA-chat-7B, teacher-forced label log-likelihood, 4032-token budget
+</footer>
+
+</div>

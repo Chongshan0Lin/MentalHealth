@@ -1,0 +1,101 @@
+{
+  "lexical": 0.5,
+  "contrasts": [
+    {
+      "a0": "cf_neutral",
+      "a1": "cf_depression",
+      "layer": 8,
+      "auc": 1.0,
+      "ci": [
+        0.9999999999999999,
+        1.0
+      ],
+      "control_auc": 0.5168345405160706,
+      "separable": true
+    },
+    {
+      "a0": "cf_neutral",
+      "a1": "cf_depression",
+      "layer": 16,
+      "auc": 1.0,
+      "ci": [
+        0.9999999999999999,
+        1.0
+      ],
+      "control_auc": 0.495076957899502,
+      "separable": true
+    },
+    {
+      "a0": "cf_neutral",
+      "a1": "cf_depression",
+      "layer": 24,
+      "auc": 0.9997736532367587,
+      "ci": [
+        0.9992923415063768,
+        1.0
+      ],
+      "control_auc": 0.5033952014486193,
+      "separable": true
+    },
+    {
+      "a0": "cf_neutral",
+      "a1": "cf_depression",
+      "layer": 32,
+      "auc": 0.9999434133091897,
+      "ci": [
+        0.9997169384057971,
+        1.0
+      ],
+      "control_auc": 0.4796004979628791,
+      "separable": true
+    },
+    {
+      "a0": "cf_neutral_matched",
+      "a1": "cf_depression",
+      "layer": 8,
+      "auc": 0.9999434133091897,
+      "ci": [
+        0.9997446373850869,
+        1.0
+      ],
+      "control_auc": 0.5260015844273427,
+      "separable": true
+    },
+    {
+      "a0": "cf_neutral_matched",
+      "a1": "cf_depression",
+      "layer": 16,
+      "auc": 1.0,
+      "ci": [
+        0.9999999999999999,
+        1.0
+      ],
+      "control_auc": 0.5615097329108194,
+      "separable": true
+    },
+    {
+      "a0": "cf_neutral_matched",
+      "a1": "cf_depression",
+      "layer": 24,
+      "auc": 0.9997736532367587,
+      "ci": [
+        0.9992360796740607,
+        1.0
+      ],
+      "control_auc": 0.5515787686736079,
+      "separable": true
+    },
+    {
+      "a0": "cf_neutral_matched",
+      "a1": "cf_depression",
+      "layer": 32,
+      "auc": 0.9999434133091897,
+      "ci": [
+        0.9997170663458144,
+        1.0
+      ],
+      "control_auc": 0.546485966500679,
+      "separable": true
+    }
+  ]
+}

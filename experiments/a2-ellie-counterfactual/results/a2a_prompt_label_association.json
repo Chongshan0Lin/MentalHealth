@@ -1,0 +1,758 @@
+{
+  "n_transcripts": 123,
+  "base_rate": 0.22764227642276422,
+  "n_tested": 75,
+  "n_significant_bh": 4,
+  "records": [
+    {
+      "id": "why_seek_help",
+      "n_asked": 34,
+      "rate_asked": 0.5588235294117647,
+      "rate_not": 0.10112359550561797,
+      "odds_ratio": 11.25925925925926,
+      "p": 3.3312739800542986e-07,
+      "text": "what got you to seek help",
+      "q": 2.4736574076270203e-05
+    },
+    {
+      "id": "therapy_going",
+      "n_asked": 35,
+      "rate_asked": 0.5428571428571428,
+      "rate_not": 0.10227272727272728,
+      "odds_ratio": 10.42361111111111,
+      "p": 6.596419753672054e-07,
+      "text": "do you still go to therapy now",
+      "q": 2.4736574076270203e-05
+    },
+    {
+      "id": "when_diagnosed",
+      "n_asked": 32,
+      "rate_asked": 0.53125,
+      "rate_not": 0.12087912087912088,
+      "odds_ratio": 8.242424242424242,
+      "p": 7.803628543991195e-06,
+      "text": "how long ago were you diagnosed",
+      "q": 0.0001950907135997799
+    },
+    {
+      "id": "trigger",
+      "n_asked": 24,
+      "rate_asked": 0.5833333333333334,
+      "rate_not": 0.1414141414141414,
+      "odds_ratio": 8.5,
+      "p": 2.1610605364094002e-05,
+      "text": "are they triggered by something",
+      "q": 0.0004051988505767625
+    },
+    {
+      "id": "family_relationship",
+      "n_asked": 96,
+      "rate_asked": 0.16666666666666666,
+      "rate_not": 0.4444444444444444,
+      "odds_ratio": 0.25,
+      "p": 0.004150563426369476,
+      "text": "tell me about your relationship with your family",
+      "q": 0.05188204282961845
+    },
+    {
+      "id": "bouts_symptoms",
+      "n_asked": 27,
+      "rate_asked": 0.4444444444444444,
+      "rate_not": 0.16666666666666666,
+      "odds_ratio": 4.0,
+      "p": 0.004150563426369476,
+      "text": "when was the last time that happened",
+      "q": 0.05188204282961845
+    },
+    {
+      "id": "feelbadly",
+      "n_asked": 54,
+      "rate_asked": 0.1111111111111111,
+      "rate_not": 0.3188405797101449,
+      "odds_ratio": 0.26704545454545453,
+      "p": 0.008716068489118158,
+      "text": "tell me about a time when someone made you feel really badly about yourself",
+      "q": 0.09338644809769456
+    },
+    {
+      "id": "been_hard",
+      "n_asked": 45,
+      "rate_asked": 0.35555555555555557,
+      "rate_not": 0.15384615384615385,
+      "odds_ratio": 3.0344827586206895,
+      "p": 0.013984635536156668,
+      "text": "that sounds really hard",
+      "q": 0.1255387890517871
+    },
+    {
+      "id": "BF_describe",
+      "n_asked": 103,
+      "rate_asked": 0.18446601941747573,
+      "rate_not": 0.45,
+      "odds_ratio": 0.27645502645502645,
+      "p": 0.017305448751608648,
+      "text": "how would your best friend describe you",
+      "q": 0.1255387890517871
+    },
+    {
+      "id": "therapy_changes",
+      "n_asked": 20,
+      "rate_asked": 0.45,
+      "rate_not": 0.18446601941747573,
+      "odds_ratio": 3.617224880382775,
+      "p": 0.017305448751608648,
+      "text": "what sort of changes have you noticed since you've been going to therapy",
+      "q": 0.1255387890517871
+    },
+    {
+      "id": "right2",
+      "n_asked": 27,
+      "rate_asked": 0.4074074074074074,
+      "rate_not": 0.17708333333333334,
+      "odds_ratio": 3.1948529411764706,
+      "p": 0.01841235572759544,
+      "text": "right",
+      "q": 0.1255387890517871
+    },
+    {
+      "id": "travel_changed",
+      "n_asked": 84,
+      "rate_asked": 0.16666666666666666,
+      "rate_not": 0.358974358974359,
+      "odds_ratio": 0.35714285714285715,
+      "p": 0.02229852617278948,
+      "text": "what do you enjoy about traveling",
+      "q": 0.13936578857993423
+    },
+    {
+      "id": "therapy_useful",
+      "n_asked": 25,
+      "rate_asked": 0.4,
+      "rate_not": 0.1836734693877551,
+      "odds_ratio": 2.962962962962963,
+      "p": 0.03155645083272799,
+      "text": "do you feel like therapy is useful",
+      "q": 0.18205644711189223
+    },
+    {
+      "id": "ideal_weekendC",
+      "n_asked": 49,
+      "rate_asked": 0.32653061224489793,
+      "rate_not": 0.16216216216216217,
+      "odds_ratio": 2.505050505050505,
+      "p": 0.0473796745279029,
+      "text": "tell me how you spend your ideal weekend",
+      "q": 0.25023976175224055
+    },
+    {
+      "id": "dream_job",
+      "n_asked": 90,
+      "rate_asked": 0.17777777777777778,
+      "rate_not": 0.36363636363636365,
+      "odds_ratio": 0.3783783783783784,
+      "p": 0.05004795235044811,
+      "text": "what's your dream job",
+      "q": 0.25023976175224055
+    },
+    {
+      "id": "easy_parent",
+      "n_asked": 24,
+      "rate_asked": 0.375,
+      "rate_not": 0.1919191919191919,
+      "odds_ratio": 2.526315789473684,
+      "p": 0.06330003942899955,
+      "text": "do you find it easy to be a parent",
+      "q": 0.28358989962731285
+    },
+    {
+      "id": "travel_trips",
+      "n_asked": 81,
+      "rate_asked": 0.1728395061728395,
+      "rate_not": 0.3333333333333333,
+      "odds_ratio": 0.417910447761194,
+      "p": 0.06823433902202243,
+      "text": "i'd love to hear about one of your trips",
+      "q": 0.28358989962731285
+    },
+    {
+      "id": "downer",
+      "n_asked": 28,
+      "rate_asked": 0.35714285714285715,
+      "rate_not": 0.18947368421052632,
+      "odds_ratio": 2.376543209876543,
+      "p": 0.07546150343739952,
+      "text": "okay",
+      "q": 0.28358989962731285
+    },
+    {
+      "id": "parent_hardest",
+      "n_asked": 20,
+      "rate_asked": 0.4,
+      "rate_not": 0.1941747572815534,
+      "odds_ratio": 2.7666666666666666,
+      "p": 0.07601668540313145,
+      "text": "what's the hardest thing about being a parent",
+      "q": 0.28358989962731285
+    },
+    {
+      "id": "parent_best",
+      "n_asked": 20,
+      "rate_asked": 0.4,
+      "rate_not": 0.1941747572815534,
+      "odds_ratio": 2.7666666666666666,
+      "p": 0.07601668540313145,
+      "text": "what's the best thing about being a parent",
+      "q": 0.28358989962731285
+    },
+    {
+      "id": "Ellie17Dec2012_07",
+      "n_asked": 55,
+      "rate_asked": 0.3090909090909091,
+      "rate_not": 0.16176470588235295,
+      "odds_ratio": 2.3181818181818183,
+      "p": 0.08249048323763869,
+      "text": "what would you say are some of your best qualities",
+      "q": 0.28358989962731285
+    },
+    {
+      "id": "self_change",
+      "n_asked": 102,
+      "rate_asked": 0.19607843137254902,
+      "rate_not": 0.38095238095238093,
+      "odds_ratio": 0.39634146341463417,
+      "p": 0.08616994309169641,
+      "text": "what are some things you wish you could change about yourself",
+      "q": 0.28358989962731285
+    },
+    {
+      "id": "im_sorry",
+      "n_asked": 32,
+      "rate_asked": 0.34375,
+      "rate_not": 0.18681318681318682,
+      "odds_ratio": 2.280112044817927,
+      "p": 0.0869675692190426,
+      "text": "i'm sorry",
+      "q": 0.28358989962731285
+    },
+    {
+      "id": "parent_differences",
+      "n_asked": 22,
+      "rate_asked": 0.36363636363636365,
+      "rate_not": 0.19801980198019803,
+      "odds_ratio": 2.3142857142857145,
+      "p": 0.10119067089928699,
+      "text": "what are some ways that you're different as a parent than your parents",
+      "q": 0.31622084656027183
+    },
+    {
+      "id": "influence_positive",
+      "n_asked": 82,
+      "rate_asked": 0.18292682926829268,
+      "rate_not": 0.3170731707317073,
+      "odds_ratio": 0.48220436280137774,
+      "p": 0.11266944666853083,
+      "text": "who's someone that's been a positive influence in your life",
+      "q": 0.31836144476825956
+    },
+    {
+      "id": "dont_like_LA",
+      "n_asked": 97,
+      "rate_asked": 0.1958762886597938,
+      "rate_not": 0.34615384615384615,
+      "odds_ratio": 0.4601139601139601,
+      "p": 0.11884362766414747,
+      "text": "what are some things you don't really like about l_a",
+      "q": 0.31836144476825956
+    },
+    {
+      "id": "memory_erase",
+      "n_asked": 97,
+      "rate_asked": 0.1958762886597938,
+      "rate_not": 0.34615384615384615,
+      "odds_ratio": 0.4601139601139601,
+      "p": 0.11884362766414747,
+      "text": "tell me about an event or something that you wish you could erase from your memory",
+      "q": 0.31836144476825956
+    },
+    {
+      "id": "behavior_changes",
+      "n_asked": 78,
+      "rate_asked": 0.1794871794871795,
+      "rate_not": 0.3111111111111111,
+      "odds_ratio": 0.484375,
+      "p": 0.11885493938015024,
+      "text": "have you noticed any changes in your behavior or thoughts lately",
+      "q": 0.31836144476825956
+    },
+    {
+      "id": "adapted_LA",
+      "n_asked": 46,
+      "rate_asked": 0.30434782608695654,
+      "rate_not": 0.18181818181818182,
+      "odds_ratio": 1.96875,
+      "p": 0.12631502288523824,
+      "text": "how easy was it for you to get used to living in l_a",
+      "q": 0.3265683640096167
+    },
+    {
+      "id": "good_hear",
+      "n_asked": 61,
+      "rate_asked": 0.16393442622950818,
+      "rate_not": 0.2903225806451613,
+      "odds_ratio": 0.4793028322440087,
+      "p": 0.13185734224865972,
+      "text": "that's so good to hear",
+      "q": 0.3265683640096167
+    },
+    {
+      "id": "sorry_hear",
+      "n_asked": 30,
+      "rate_asked": 0.3333333333333333,
+      "rate_not": 0.1935483870967742,
+      "odds_ratio": 2.0833333333333335,
+      "p": 0.13498159045730823,
+      "text": "i'm sorry to hear that",
+      "q": 0.3265683640096167
+    },
+    {
+      "id": "like_about_LA",
+      "n_asked": 103,
+      "rate_asked": 0.20388349514563106,
+      "rate_not": 0.35,
+      "odds_ratio": 0.47560975609756095,
+      "p": 0.15797665024126586,
+      "text": "what are some things you really like about l_a",
+      "q": 0.3702577740029669
+    },
+    {
+      "id": "feelguilty",
+      "n_asked": 72,
+      "rate_asked": 0.18055555555555555,
+      "rate_not": 0.29411764705882354,
+      "odds_ratio": 0.5288135593220339,
+      "p": 0.19008627213837398,
+      "text": "what's something you feel guilty about",
+      "q": 0.40318161529184326
+    },
+    {
+      "id": "thats_great",
+      "n_asked": 96,
+      "rate_asked": 0.19791666666666666,
+      "rate_not": 0.3333333333333333,
+      "odds_ratio": 0.4935064935064935,
+      "p": 0.19226942116361914,
+      "text": "that's great",
+      "q": 0.40318161529184326
+    },
+    {
+      "id": "describe_felt",
+      "n_asked": 69,
+      "rate_asked": 0.2753623188405797,
+      "rate_not": 0.16666666666666666,
+      "odds_ratio": 1.9,
+      "p": 0.1951431688789768,
+      "text": "how did you feel in that moment",
+      "q": 0.40318161529184326
+    },
+    {
+      "id": "memorableB",
+      "n_asked": 71,
+      "rate_asked": 0.18309859154929578,
+      "rate_not": 0.28846153846153844,
+      "odds_ratio": 0.5528735632183908,
+      "p": 0.19525081223411433,
+      "text": "what's one of your most memorable experiences",
+      "q": 0.40318161529184326
+    },
+    {
+      "id": "hmm_downer",
+      "n_asked": 28,
+      "rate_asked": 0.32142857142857145,
+      "rate_not": 0.2,
+      "odds_ratio": 1.894736842105263,
+      "p": 0.20334841508564694,
+      "text": "hmm",
+      "q": 0.40318161529184326
+    },
+    {
+      "id": "when_LA",
+      "n_asked": 57,
+      "rate_asked": 0.2807017543859649,
+      "rate_not": 0.18181818181818182,
+      "odds_ratio": 1.7560975609756098,
+      "p": 0.2042786850812006,
+      "text": "when did you move to l_a",
+      "q": 0.40318161529184326
+    },
+    {
+      "id": "landed_trouble",
+      "n_asked": 33,
+      "rate_asked": 0.30303030303030304,
+      "rate_not": 0.2,
+      "odds_ratio": 1.7391304347826086,
+      "p": 0.23457059625835353,
+      "text": "has that gotten you in trouble",
+      "q": 0.45109730049683366
+    },
+    {
+      "id": "wild_laughter5",
+      "n_asked": 22,
+      "rate_asked": 0.3181818181818182,
+      "rate_not": 0.2079207920792079,
+      "odds_ratio": 1.7777777777777777,
+      "p": 0.27161469920070136,
+      "text": "(laughter)",
+      "q": 0.509277561001315
+    },
+    {
+      "id": "still_working_on_X",
+      "n_asked": 51,
+      "rate_asked": 0.17647058823529413,
+      "rate_not": 0.2638888888888889,
+      "odds_ratio": 0.5977443609022557,
+      "p": 0.2829779650979614,
+      "text": "are you still working in that",
+      "q": 0.5176426190816368
+    },
+    {
+      "id": "sounds_interesting",
+      "n_asked": 35,
+      "rate_asked": 0.2857142857142857,
+      "rate_not": 0.20454545454545456,
+      "odds_ratio": 1.5555555555555556,
+      "p": 0.3481006061679969,
+      "text": "that sounds interesting",
+      "q": 0.6107490364005546
+    },
+    {
+      "id": "wow",
+      "n_asked": 45,
+      "rate_asked": 0.17777777777777778,
+      "rate_not": 0.2564102564102564,
+      "odds_ratio": 0.6270270270270271,
+      "p": 0.3765741684710012,
+      "text": "wow",
+      "q": 0.6107490364005546
+    },
+    {
+      "id": "why_LA",
+      "n_asked": 47,
+      "rate_asked": 0.2765957446808511,
+      "rate_not": 0.19736842105263158,
+      "odds_ratio": 1.5549019607843138,
+      "p": 0.37728773282699424,
+      "text": "why did you move to l_a",
+      "q": 0.6107490364005546
+    },
+    {
+      "id": "nice",
+      "n_asked": 79,
+      "rate_asked": 0.20253164556962025,
+      "rate_not": 0.2727272727272727,
+      "odds_ratio": 0.6772486772486772,
+      "p": 0.3796263786559085,
+      "text": "nice",
+      "q": 0.6107490364005546
+    },
+    {
+      "id": "awesome",
+      "n_asked": 72,
+      "rate_asked": 0.19444444444444445,
+      "rate_not": 0.27450980392156865,
+      "odds_ratio": 0.6379310344827587,
+      "p": 0.383142007752671,
+      "text": "awesome",
+      "q": 0.6107490364005546
+    },
+    {
+      "id": "often_backB",
+      "n_asked": 56,
+      "rate_asked": 0.26785714285714285,
+      "rate_not": 0.19402985074626866,
+      "odds_ratio": 1.5196998123827392,
+      "p": 0.39037676424162654,
+      "text": "how often do you go back to your hometown",
+      "q": 0.6107490364005546
+    },
+    {
+      "id": "difficult",
+      "n_asked": 63,
+      "rate_asked": 0.19047619047619047,
+      "rate_not": 0.26666666666666666,
+      "odds_ratio": 0.6470588235294118,
+      "p": 0.3908793832963549,
+      "text": "how hard is that",
+      "q": 0.6107490364005546
+    },
+    {
+      "id": "regret",
+      "n_asked": 96,
+      "rate_asked": 0.20833333333333334,
+      "rate_not": 0.2962962962962963,
+      "odds_ratio": 0.625,
+      "p": 0.43549614511264567,
+      "text": "is there anything you regret",
+      "q": 0.6599387656140764
+    },
+    {
+      "id": "great_situation",
+      "n_asked": 30,
+      "rate_asked": 0.16666666666666666,
+      "rate_not": 0.24731182795698925,
+      "odds_ratio": 0.6086956521739131,
+      "p": 0.45708221053662124,
+      "text": "that sounds like a great situation",
+      "q": 0.6599387656140764
+    },
+    {
+      "id": "tell_about_that",
+      "n_asked": 93,
+      "rate_asked": 0.24731182795698925,
+      "rate_not": 0.16666666666666666,
+      "odds_ratio": 1.6428571428571428,
+      "p": 0.45708221053662124,
+      "text": "can you tell me about that",
+      "q": 0.6599387656140764
+    },
+    {
+      "id": "why2",
+      "n_asked": 92,
+      "rate_asked": 0.25,
+      "rate_not": 0.16129032258064516,
+      "odds_ratio": 1.7333333333333334,
+      "p": 0.4576607070787547,
+      "text": "why",
+      "q": 0.6599387656140764
+    },
+    {
+      "id": "give_example",
+      "n_asked": 33,
+      "rate_asked": 0.2727272727272727,
+      "rate_not": 0.2111111111111111,
+      "odds_ratio": 1.4013157894736843,
+      "p": 0.475155911242135,
+      "text": "can you give me an example of that",
+      "q": 0.6599387656140764
+    },
+    {
+      "id": "makes_sense",
+      "n_asked": 33,
+      "rate_asked": 0.2727272727272727,
+      "rate_not": 0.2111111111111111,
+      "odds_ratio": 1.4013157894736843,
+      "p": 0.475155911242135,
+      "text": "that makes sense",
+      "q": 0.6599387656140764
+    },
+    {
+      "id": "wild_laughter3",
+      "n_asked": 52,
+      "rate_asked": 0.19230769230769232,
+      "rate_not": 0.2535211267605634,
+      "odds_ratio": 0.701058201058201,
+      "p": 0.5158240151964858,
+      "text": "(laughter)",
+      "q": 0.6729508026058266
+    },
+    {
+      "id": "like_what",
+      "n_asked": 50,
+      "rate_asked": 0.26,
+      "rate_not": 0.2054794520547945,
+      "odds_ratio": 1.3585585585585584,
+      "p": 0.51637624902718,
+      "text": "like what",
+      "q": 0.6729508026058266
+    },
+    {
+      "id": "understand",
+      "n_asked": 65,
+      "rate_asked": 0.2,
+      "rate_not": 0.25862068965517243,
+      "odds_ratio": 0.7166666666666667,
+      "p": 0.520054306368587,
+      "text": "i understand",
+      "q": 0.6729508026058266
+    },
+    {
+      "id": "aw",
+      "n_asked": 51,
+      "rate_asked": 0.19607843137254902,
+      "rate_not": 0.25,
+      "odds_ratio": 0.7317073170731707,
+      "p": 0.520415287348506,
+      "text": "aw",
+      "q": 0.6729508026058266
+    },
+    {
+      "id": "mind",
+      "n_asked": 25,
+      "rate_asked": 0.28,
+      "rate_not": 0.21428571428571427,
+      "odds_ratio": 1.4259259259259258,
+      "p": 0.5932488080414091,
+      "text": "whatever comes to your mind",
+      "q": 0.7498967639835468
+    },
+    {
+      "id": "yeah_downer",
+      "n_asked": 94,
+      "rate_asked": 0.24468085106382978,
+      "rate_not": 0.1724137931034483,
+      "odds_ratio": 1.5549295774647887,
+      "p": 0.6127233022767917,
+      "text": "yeah",
+      "q": 0.7498967639835468
+    },
+    {
+      "id": "symptoms_cope",
+      "n_asked": 39,
+      "rate_asked": 0.2564102564102564,
+      "rate_not": 0.21428571428571427,
+      "odds_ratio": 1.264367816091954,
+      "p": 0.6472130568860708,
+      "text": "how do you cope with them",
+      "q": 0.7498967639835468
+    },
+    {
+      "id": "mm",
+      "n_asked": 77,
+      "rate_asked": 0.24675324675324675,
+      "rate_not": 0.1956521739130435,
+      "odds_ratio": 1.3467432950191571,
+      "p": 0.6574824559969341,
+      "text": "mm",
+      "q": 0.7498967639835468
+    },
+    {
+      "id": "hard_decision",
+      "n_asked": 78,
+      "rate_asked": 0.24358974358974358,
+      "rate_not": 0.2,
+      "odds_ratio": 1.2881355932203389,
+      "p": 0.6590726752272998,
+      "text": "how did you decide to do that",
+      "q": 0.7498967639835468
+    },
+    {
+      "id": "sleep_affects",
+      "n_asked": 78,
+      "rate_asked": 0.24358974358974358,
+      "rate_not": 0.2,
+      "odds_ratio": 1.2881355932203389,
+      "p": 0.6590726752272998,
+      "text": "what are you like when you don't sleep well",
+      "q": 0.7498967639835468
+    },
+    {
+      "id": "compares_LA",
+      "n_asked": 51,
+      "rate_asked": 0.2549019607843137,
+      "rate_not": 0.20833333333333334,
+      "odds_ratio": 1.3,
+      "p": 0.6631051165338117,
+      "text": "how does it compare to l_a",
+      "q": 0.7498967639835468
+    },
+    {
+      "id": "cool3",
+      "n_asked": 71,
+      "rate_asked": 0.2112676056338028,
+      "rate_not": 0.25,
+      "odds_ratio": 0.8035714285714286,
+      "p": 0.6664410571143085,
+      "text": "cool",
+      "q": 0.7498967639835468
+    },
+    {
+      "id": "Ellie17Dec2012_10",
+      "n_asked": 65,
+      "rate_asked": 0.24615384615384617,
+      "rate_not": 0.20689655172413793,
+      "odds_ratio": 1.251700680272109,
+      "p": 0.6699077758253018,
+      "text": "tell me about something you did recently that you really enjoyed",
+      "q": 0.7498967639835468
+    },
+    {
+      "id": "avoid",
+      "n_asked": 20,
+      "rate_asked": 0.25,
+      "rate_not": 0.22330097087378642,
+      "odds_ratio": 1.1594202898550725,
+      "p": 0.7758654123621175,
+      "text": "could you have done anything to avoid it",
+      "q": 0.8557339106935119
+    },
+    {
+      "id": "yeah2",
+      "n_asked": 25,
+      "rate_asked": 0.2,
+      "rate_not": 0.23469387755102042,
+      "odds_ratio": 0.8152173913043478,
+      "p": 0.7957363009814937,
+      "text": "yeah",
+      "q": 0.8649307619364062
+    },
+    {
+      "id": "that_sucks",
+      "n_asked": 38,
+      "rate_asked": 0.21052631578947367,
+      "rate_not": 0.23529411764705882,
+      "odds_ratio": 0.8666666666666667,
+      "p": 0.8201755321929406,
+      "text": "that sucks",
+      "q": 0.8737711759900962
+    },
+    {
+      "id": "happy_didthat",
+      "n_asked": 46,
+      "rate_asked": 0.2391304347826087,
+      "rate_not": 0.22077922077922077,
+      "odds_ratio": 1.1092436974789917,
+      "p": 0.8271700466039578,
+      "text": "are you happy you did that",
+      "q": 0.8737711759900962
+    },
+    {
+      "id": "change_directions",
+      "n_asked": 58,
+      "rate_asked": 0.22413793103448276,
+      "rate_not": 0.23076923076923078,
+      "odds_ratio": 0.9629629629629629,
+      "p": 1.0,
+      "text": "what made you decide to do that",
+      "q": 1.0
+    },
+    {
+      "id": "uh_huh",
+      "n_asked": 97,
+      "rate_asked": 0.2268041237113402,
+      "rate_not": 0.23076923076923078,
+      "odds_ratio": 0.9777777777777777,
+      "p": 1.0,
+      "text": "uh huh",
+      "q": 1.0
+    },
+    {
+      "id": "yeah3",
+      "n_asked": 83,
+      "rate_asked": 0.2289156626506024,
+      "rate_not": 0.225,
+      "odds_ratio": 1.0225694444444444,
+      "p": 1.0,
+      "text": "yeah",
+      "q": 1.0
+    },
+    {
+      "id": "isee_downer",
+      "n_asked": 45,
+      "rate_asked": 0.2222222222222222,
+      "rate_not": 0.23076923076923078,
+      "odds_ratio": 0.9523809523809523,
+      "p": 1.0,
+      "text": "i see",
+      "q": 1.0
+    }
+  ]
+}

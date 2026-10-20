@@ -1,0 +1,481 @@
+[
+ {
+  "itemType": "conferencePaper",
+  "title": "LEACE: Perfect Linear Concept Erasure in Closed Form",
+  "creators": [
+   {
+    "creatorType": "author",
+    "firstName": "Nora",
+    "lastName": "Belrose"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "David",
+    "lastName": "Schneider-Joseph"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Shauli",
+    "lastName": "Ravfogel"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Ryan",
+    "lastName": "Cotterell"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Edward",
+    "lastName": "Raff"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Stella",
+    "lastName": "Biderman"
+   }
+  ],
+  "date": "2023",
+  "extra": "Citation Key: belrose2023leace\narXiv:2306.03819",
+  "proceedingsTitle": "Advances in Neural Information Processing Systems"
+ },
+ {
+  "itemType": "conferencePaper",
+  "title": "DAIC-WOZ: On the Validity of Using the Therapist's Prompts in Automatic Depression Detection from Clinical Interviews",
+  "creators": [
+   {
+    "creatorType": "author",
+    "firstName": "Sergio",
+    "lastName": "Burdisso"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Ernesto",
+    "lastName": "Reyes-Ram\u00edrez"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Esa\u00fa",
+    "lastName": "Villatoro-Tello"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Fernando",
+    "lastName": "S\u00e1nchez-Vega"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Adri\u00e1n Pastor",
+    "lastName": "L\u00f3pez-Monroy"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Petr",
+    "lastName": "Motlicek"
+   }
+  ],
+  "date": "2024",
+  "extra": "Citation Key: burdisso2024daicwoz\narXiv:2404.14463",
+  "proceedingsTitle": "Proceedings of the 6th Clinical Natural Language Processing Workshop"
+ },
+ {
+  "itemType": "preprint",
+  "title": "Don't Take the Easy Way Out: Ensemble Based Methods for Avoiding Known Dataset Biases",
+  "creators": [
+   {
+    "creatorType": "author",
+    "firstName": "Christopher",
+    "lastName": "Clark"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Mark",
+    "lastName": "Yatskar"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Luke",
+    "lastName": "Zettlemoyer"
+   }
+  ],
+  "date": "2019",
+  "extra": "Citation Key: clark2019poe",
+  "repository": "arXiv",
+  "archiveID": "arXiv:1909.03683"
+ },
+ {
+  "itemType": "preprint",
+  "title": "Improving Causal Interventions in Amnesic Probing with Mean Projection or LEACE",
+  "creators": [
+   {
+    "creatorType": "author",
+    "firstName": "Alicja",
+    "lastName": "Dobrzeniecka"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Antske",
+    "lastName": "Fokkens"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Pia",
+    "lastName": "Sommerauer"
+   }
+  ],
+  "date": "2025",
+  "extra": "Citation Key: dobrzeniecka2025improving",
+  "repository": "arXiv",
+  "archiveID": "arXiv:2506.11673"
+ },
+ {
+  "itemType": "journalArticle",
+  "title": "Amnesic Probing: Behavioral Explanation with Amnesic Counterfactuals",
+  "creators": [
+   {
+    "creatorType": "author",
+    "firstName": "Yanai",
+    "lastName": "Elazar"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Shauli",
+    "lastName": "Ravfogel"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Alon",
+    "lastName": "Jacovi"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Yoav",
+    "lastName": "Goldberg"
+   }
+  ],
+  "date": "2021",
+  "extra": "Citation Key: elazar2021amnesic\narXiv:2006.00995",
+  "publicationTitle": "Transactions of the Association for Computational Linguistics"
+ },
+ {
+  "itemType": "conferencePaper",
+  "title": "The Distress Analysis Interview Corpus of human and computer interviews",
+  "creators": [
+   {
+    "creatorType": "author",
+    "firstName": "Jonathan",
+    "lastName": "Gratch"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Ron",
+    "lastName": "Artstein"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Gale M.",
+    "lastName": "Lucas"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Giota",
+    "lastName": "Stratou"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Stefan",
+    "lastName": "Scherer"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Angela",
+    "lastName": "Nazarian"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Rachel",
+    "lastName": "Wood"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Jill",
+    "lastName": "Boberg"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "David",
+    "lastName": "DeVault"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Stacy",
+    "lastName": "Marsella"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "David",
+    "lastName": "Traum"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Albert",
+    "lastName": "Rizzo"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Louis-Philippe",
+    "lastName": "Morency"
+   }
+  ],
+  "date": "2014",
+  "extra": "Citation Key: gratch2014daic",
+  "url": "https://aclanthology.org/L14-1421/",
+  "pages": "3123--3128",
+  "proceedingsTitle": "Proceedings of the Ninth International Conference on Language Resources and Evaluation (LREC'14)"
+ },
+ {
+  "itemType": "conferencePaper",
+  "title": "MentalBERT: Publicly Available Pretrained Language Models for Mental Healthcare",
+  "creators": [
+   {
+    "creatorType": "author",
+    "firstName": "Shaoxiong",
+    "lastName": "Ji"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Tianlin",
+    "lastName": "Zhang"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Luna",
+    "lastName": "Ansari"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Jie",
+    "lastName": "Fu"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Prayag",
+    "lastName": "Tiwari"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Erik",
+    "lastName": "Cambria"
+   }
+  ],
+  "date": "2022",
+  "extra": "Citation Key: ji2022mentalbert\narXiv:2110.15621",
+  "url": "https://aclanthology.org/2022.lrec-1.778/",
+  "pages": "7184--7190",
+  "proceedingsTitle": "Proceedings of the Thirteenth Language Resources and Evaluation Conference (LREC 2022)"
+ },
+ {
+  "itemType": "preprint",
+  "title": "DepFlow: Disentangled Speech Generation to Mitigate Semantic Bias in Depression Detection",
+  "creators": [
+   {
+    "creatorType": "author",
+    "firstName": "Yang",
+    "lastName": "Li"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Wei",
+    "lastName": "Zhang"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Jing",
+    "lastName": "Li"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Ming",
+    "lastName": "Guo"
+   }
+  ],
+  "date": "2026",
+  "extra": "Citation Key: li2026depflow",
+  "repository": "arXiv",
+  "archiveID": "arXiv:2601.00303"
+ },
+ {
+  "itemType": "preprint",
+  "title": "Distributionally Robust Neural Networks for Group Shifts: On the Importance of Regularization for Worst-Case Generalization",
+  "creators": [
+   {
+    "creatorType": "author",
+    "firstName": "Shiori",
+    "lastName": "Sagawa"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Pang Wei",
+    "lastName": "Koh"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Tatsunori B.",
+    "lastName": "Hashimoto"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Percy",
+    "lastName": "Liang"
+   }
+  ],
+  "date": "2019",
+  "extra": "Citation Key: sagawa2019groupdro",
+  "repository": "arXiv",
+  "archiveID": "arXiv:1911.08731"
+ },
+ {
+  "itemType": "preprint",
+  "title": "Learning from Others' Mistakes: Avoiding Dataset Biases without Modeling Them",
+  "creators": [
+   {
+    "creatorType": "author",
+    "firstName": "Victor",
+    "lastName": "Sanh"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Thomas",
+    "lastName": "Wolf"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Yonatan",
+    "lastName": "Belinkov"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Alexander M.",
+    "lastName": "Rush"
+   }
+  ],
+  "date": "2020",
+  "extra": "Citation Key: sanh2020lmm",
+  "repository": "arXiv",
+  "archiveID": "arXiv:2012.01300"
+ },
+ {
+  "itemType": "preprint",
+  "title": "Assessing Robustness to Spurious Correlations in Post-Training Language Models",
+  "creators": [
+   {
+    "creatorType": "author",
+    "firstName": "Julia",
+    "lastName": "Shuieh"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Prasann",
+    "lastName": "Singhal"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Apaar",
+    "lastName": "Shanker"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "John",
+    "lastName": "Heyer"
+   }
+  ],
+  "date": "2025",
+  "extra": "Citation Key: shuieh2025robustness",
+  "repository": "arXiv",
+  "archiveID": "arXiv:2505.05704"
+ },
+ {
+  "itemType": "preprint",
+  "title": "Beyond Spurious Signals: Debiasing Multimodal Large Language Models via Counterfactual Inference and Adaptive Expert Routing",
+  "creators": [
+   {
+    "creatorType": "author",
+    "firstName": "Zichen",
+    "lastName": "Wu"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Hsiu-Yuan",
+    "lastName": "Huang"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Yunfang",
+    "lastName": "Wu"
+   }
+  ],
+  "date": "2025",
+  "extra": "Citation Key: wu2025beyond",
+  "repository": "arXiv",
+  "archiveID": "arXiv:2509.15361"
+ },
+ {
+  "itemType": "conferencePaper",
+  "title": "MentaLLaMA: Interpretable Mental Health Analysis on Social Media with Large Language Models",
+  "creators": [
+   {
+    "creatorType": "author",
+    "firstName": "Kailai",
+    "lastName": "Yang"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Tianlin",
+    "lastName": "Zhang"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Ziyan",
+    "lastName": "Kuang"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Qianqian",
+    "lastName": "Xie"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Jimin",
+    "lastName": "Huang"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Sophia",
+    "lastName": "Ananiadou"
+   }
+  ],
+  "date": "2024",
+  "extra": "Citation Key: yang2024mentallama\narXiv:2309.13567",
+  "DOI": "10.1145/3589334.3648137",
+  "proceedingsTitle": "Proceedings of the ACM Web Conference 2024 (WWW '24)"
+ },
+ {
+  "itemType": "conferencePaper",
+  "title": "Mitigating Interviewer Bias in Multimodal Depression Detection: An Approach with Adversarial Learning and Contextual Positional Encoding",
+  "creators": [
+   {
+    "creatorType": "author",
+    "firstName": "Enshi",
+    "lastName": "Zhang"
+   },
+   {
+    "creatorType": "author",
+    "firstName": "Christian",
+    "lastName": "Poellabauer"
+   }
+  ],
+  "date": "2025",
+  "extra": "Citation Key: zhang2025interviewerbias",
+  "DOI": "10.18653/v1/2025.findings-emnlp.650",
+  "proceedingsTitle": "Findings of the Association for Computational Linguistics: EMNLP 2025"
+ }
+]

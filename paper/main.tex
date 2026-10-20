@@ -1,0 +1,732 @@
+\documentclass{article}
+\usepackage[final]{neurips}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{microtype}
+\usepackage{xspace}
+
+\title{Understanding or Shortcut? Diagnosing and Mitigating\\
+       Shortcut Learning in Mental-Health Language Models}
+
+\author{%
+  Anonymous Author(s)\\
+  Affiliation\\
+  \texttt{email}
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Language models are increasingly deployed for mental-health understanding and
+support, and a growing body of work fine-tunes them on mental-health corpora to
+produce domain-specific models. These models are then evaluated on the same
+benchmarks they were tuned on, and they score well. We ask whether they have
+learned the clinical construct or the dataset. Applying complementary detection
+methods to two widely used mental-health models, we find substantial shortcut
+learning, and we find that the methods disagree with one another in ways that matter: the
+most common check---removing the shortcut and seeing whether performance
+drops---reports nothing on a model that a counterfactual test shows is dominated
+by that same shortcut. We characterise the shortcuts that are actually present
+in three forms: interviewer question selection in clinical-interview data,
+surface clinical vocabulary rather than clinically informative content, and a
+corpus-prior default that is \emph{acquired during post-training} rather than
+inherited from the base model. On matched pairs we find the model responds
+$1.8\times$ more strongly to a change of clinician than to a change of patient.
+We then evaluate nine mitigations at four levels---input, inference, output
+score, and training---and find two families that work, both at inference time.
+Deleting the interviewer's turns improves AUC by $+0.126$ and nearly doubles the
+model's responsiveness to the patient's own words, because the shortcut had been
+crowding out the evidence. Averaging the prediction over several interviewer
+contexts recovers almost as much ($+0.101$) without needing to segment the input.
+Surgical removal of only the offending questions makes things \emph{worse}, every
+train-time method fails---one reducing accuracy from 0.722 to 0.540---and
+chain-of-thought scores best of all on shortcut-reduction metrics purely by
+answering ``depressed'' to 98\% of patients.
+\end{abstract}
+
+\section{Introduction}
+
+Language models are being applied to mental-health screening, triage and
+support. Because general-purpose models are not tuned for clinical language, the
+field has built domain-specific ones: models fine-tuned on collections of
+mental-health data---clinical interviews, annotated social-media posts,
+symptom-labelled text---and released for exactly this purpose
+\citep{yang2024mentallama,ji2022mentalbert}.
+These models score well on mental-health benchmarks, and those scores are the
+basis on which they are recommended.
+
+There is a problem with that evidence. The models are evaluated on the same
+datasets they were tuned on, and those datasets have structure that has nothing
+to do with clinical constructs. Social-media corpora are collected by keyword
+search, so posts carry their collection method in their vocabulary. Clinical
+interviews are conducted adaptively, so the clinician's questions follow from
+what the patient has already disclosed. A model can exploit any of this and post
+a high number without having learned anything about depression.
+
+This is shortcut learning, and the question we ask is simple: \textbf{when a
+mental-health language model scores well on its benchmark, has it understood the
+construct or the dataset?}
+
+Answering it turns out to be harder than it looks, because the standard way of
+checking gives the wrong answer. The usual test is to remove the suspected
+shortcut and see whether performance falls. We show a model on which that test
+reports nothing at all, and which a counterfactual test shows is so dominated by
+the same shortcut that swapping five interviewer questions reverses the majority
+of its diagnoses.
+
+\paragraph{What this paper does.}
+
+\begin{itemize}
+\item \textbf{Detects.} We apply removal, counterfactual substitution and
+      content-free prompting to two mental-health models and show they disagree
+      (\S\ref{sec:detect}). We separately report internal probing as a
+      \emph{negative} result: corpus identity is decodable, yet the pathway it
+      would support is capped far below the model's actual performance, and it
+      is not the signal the counterfactual manipulates (\S\ref{sec:probing}).
+\item \textbf{Characterises.} We identify three concrete forms the shortcuts
+      take, and show one of them is \emph{created by post-training} rather than
+      inherited (\S\ref{sec:forms}).
+\item \textbf{Quantifies the cost.} On matched pairs, the model responds
+      $1.8\times$ more to a change of clinician than to a change of patient
+      (\S\ref{sec:cost}).
+\item \textbf{Mitigates.} We evaluate nine interventions at four levels---input,
+      inference, output score and training---and identify two working families,
+      both at inference time. We also show why the intuitive refinement of
+      removing \emph{only} the offending questions makes things worse
+      (\S\ref{sec:mitigate}).
+\end{itemize}
+
+\section{Setup}
+
+\paragraph{Models.} \texttt{MentaLLaMA-chat-7B}, a 7B model instruction-tuned on
+a large mental-health instruction corpus
+\citep{yang2024mentallama}, used zero-shot; and
+\texttt{MentalBERT} \citep{ji2022mentalbert}, an
+encoder pre-trained on mental-health text, fine-tuned by us. We also examine a
+model family released at three successive post-training stages---supervised
+fine-tuning, reinforcement learning, and a reasoning-RL stage---to ask whether
+post-training itself introduces shortcuts.
+
+\paragraph{Data.} \textbf{DAIC-WOZ} \citep{gratch2014daic}:
+188 clinical interview transcripts with binary PHQ-8 depression labels; always
+answering ``not depressed'' scores 0.707. \textbf{IMHI}: ten social-media
+mental-health datasets covering depression, stress, loneliness and suicidal
+ideation, used to test whether shortcuts generalise beyond interviews. A
+multimodal emotion benchmark is used for the post-training analysis.
+
+\paragraph{How we read predictions.} We never ask the model to write an answer
+and parse it. We score the likelihood it assigns to each candidate answer,
+giving a calibrated probability. This avoids a trap: models fail to produce
+parseable output more often on harder inputs, so parsing would manufacture
+performance drops in exactly the conditions under test. We report AUC as the
+headline because both models answer nearly always ``yes'' or nearly always
+``no,'' and a constant answer scores exactly 0.500 balanced accuracy---identical
+to a coin flip. All intervals are bootstrap 95\% confidence intervals against a
+shuffled-label noise floor.
+
+\section{Detection: the two standard tests disagree}
+\label{sec:detect}
+
+\paragraph{Method 1: removal.} Delete everything except the suspected shortcut
+and see whether the model can still predict. On DAIC we gave the model only the
+interviewer's turns---not one word from the patient. It scored AUC 0.546, inside
+its own noise floor of 0.576. By this test the model ignores the shortcut
+entirely.
+
+The shortcut is certainly there to be used: a bag-of-words classifier on the same
+input reaches \textbf{0.810}, higher than the same classifier given the
+patient's own words (0.756). On this benchmark what the clinician asked is more
+diagnostic than what the patient answered---a property of the data first
+reported by \citet{burdisso2024daicwoz}, which we replicate.
+
+\paragraph{Method 2: counterfactual substitution.} Hold the patient's words
+byte-identical and change only the shortcut. We swapped five interviewer
+questions between a biographical set (``where are you from originally'') and a
+clinically loaded set (``have you been diagnosed with depression''), inserted at
+identical positions, both taken verbatim from the corpus.
+
+\begin{table}[t]
+\centering
+\caption{Same patients, same words, only the interviewer's five questions differ.
+Accuracy falls below the 0.707 majority baseline while AUC barely moves.}
+\label{tab:arms}
+\begin{tabular}{lcccc}
+\toprule
+Interviewer context & Mean $p(\text{depressed})$ & Accuracy & AUC & \% predicted depressed \\
+\midrule
+Biographical  & 0.373 & \textbf{0.750} & 0.764 & 16.0 \\
+None          & 0.446 & 0.707 & 0.777 & 35.1 \\
+Clinical      & 0.579 & \textbf{0.495} & 0.734 & 74.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The depression probability moves $+0.206$ [$+0.195$, $+0.217$] and
+\textbf{58.5\% of predictions reverse}. Accuracy collapses from 0.750 to 0.495,
+worse than answering ``not depressed'' every time.
+
+\paragraph{The two methods contradict each other, and both are right.} Removal
+asks whether the label can be \emph{read out} of the shortcut channel; for this
+model it cannot. Counterfactual substitution asks whether the channel
+\emph{moves the answer} when the evidence is fixed; it moves it enormously. A
+model can be unable to decode a signal and still be governed by it. Removal is
+structurally blind to this case, because taking out the shortcut also takes out
+whatever legitimate context was entangled with it. \textbf{Any mental-health
+model audited by removal alone can carry an effect of this size undetected.}
+
+\paragraph{Method 3: content-free prompting.} We removed the input entirely,
+leaving only the question and answer options, to measure whether the model has
+memorised a benchmark's answer distribution. Results appear in
+\S\ref{sec:forms}, because what they reveal is specifically a product of
+post-training.
+
+\paragraph{A method we deliberately do not count here.} Internal probing---
+training a linear classifier on hidden states to recover which corpus a text
+came from---is a natural fourth test, and we ran it. We report it in
+\S\ref{sec:probing} rather than here, because it targets a \emph{different
+signal on a different corpus} and we found it does not support the mechanism it
+appears to. Presenting it alongside the two tests above would imply the four are
+views of one phenomenon; they are not.
+
+\section{What form do the shortcuts take?}
+\label{sec:forms}
+
+\paragraph{Form 1: question selection in adaptive interviews.} DAIC interviews
+were conducted by an interviewer following an adaptive script, asking ``do you
+still go to therapy now'' only after therapy had come up. The interviewer's path
+through the protocol therefore encodes what she has already learned. Measuring
+this directly: a classifier given only a binary record of \emph{which} of 47
+scripted questions were asked---no text, no phrasing---predicts depression at
+AUC \textbf{0.773}. Four questions survive multiple-comparison correction, with
+odds ratios of 8.2 to 11.3. The shortcut is not an annotation artifact but a
+consequence of good clinical interviewing.
+
+\paragraph{Form 2: surface clinical vocabulary, not clinical content.} If the
+model were picking up the genuine logic of the adaptive interview, it should
+respond most to the questions that actually predict the diagnosis. It does the
+opposite. We built a pool from the empirically most predictive questions and
+matched it to the clinically loaded pool to within one word, so length cannot
+explain the difference.
+
+\begin{table}[t]
+\centering
+\caption{Questions that \emph{sound} clinical move the model more than questions
+that genuinely predict the diagnosis. All pools 37--38 words.}
+\label{tab:wronghalf}
+\begin{tabular}{lcc}
+\toprule
+Comparison & Change in $p(\text{depressed})$ & Predictions reversed \\
+\midrule
+Clinical-sounding vs.\ neutral            & $+0.193$ [$+0.181$, $+0.206$] & 54.3\% \\
+Genuinely predictive vs.\ neutral         & $+0.085$ [$+0.077$, $+0.093$] & 19.7\% \\
+\textbf{Clinical-sounding vs.\ predictive} & $\mathbf{+0.108}$ [$+0.098$, $+0.119$] & 37.8\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Clinical-sounding questions move the model $2.3\times$ more. Asked to reason step
+by step, the model says so explicitly. With patient words unchanged, the fraction
+of its written reasoning mentioning diagnosis, therapy or medication rises from
+63\% under biographical questions to 86\% under clinical ones:
+
+\begin{quote}
+\emph{``The poster mentions being diagnosed with depression and having a
+therapist. This suggests that they have been seeking professional help for their
+mental health.''}
+\end{quote}
+
+The patient mentioned no such thing. \emph{The interviewer asked the question},
+and the model attributed it to the patient.
+
+\paragraph{Form 3: a corpus prior, acquired during post-training.} Removing the
+input entirely and leaving only the question and options, we compared three
+successive post-training stages of one model family.
+
+\begin{table}[t]
+\centering
+\caption{With no input at all, only the final post-training stage answers with
+the benchmark's majority class. Benchmark accuracy rises $2.6\times$ across
+stages while balanced accuracy, which cannot be gamed by a constant answer, does
+not move.}
+\label{tab:posttrain}
+\begin{tabular}{lccc}
+\toprule
+Post-training stage & Accuracy (full input) & Balanced accuracy & Accuracy with \emph{no} input \\
+\midrule
+Supervised fine-tuning & 0.260 & 0.388 & 0.027 \\
+Reinforcement learning & 0.600 & 0.379 & 0.027 \\
+Reasoning RL           & \textbf{0.687} & 0.422 & \textbf{0.483} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The final stage answers with the corpus majority class to \emph{every} item when
+given no input, scoring 0.483---the majority rate to three decimals. The earlier
+stages do not. Meanwhile headline accuracy climbs from 0.260 to 0.687 while
+balanced accuracy stays flat within its confidence interval. \textbf{The reported
+improvement is the majority class, not discrimination, and the behaviour appears
+during post-training.} This matters directly for the domain-specific
+fine-tuning pipeline: the very process used to specialise models for mental
+health introduced this shortcut.
+
+\paragraph{The mechanism is a threshold shift.} Across all of these, the model's
+\emph{ranking} of patients survives---AUC moves only 0.764 to 0.734 in
+Table~\ref{tab:arms}---while the fraction predicted depressed goes from 16\% to
+74\%. The shortcut acts like a thumb on the scale. Non-depressed patients move
+further than depressed ones ($+0.215$ vs $+0.183$), so the harm falls hardest on
+them. Re-scoring at a corrected threshold recovers 97.9\% of the lost accuracy,
+confirming the model's underlying judgment was never broken.
+
+\subsection{Inside the model: the shortcut is a bias vector, not a feature}
+\label{sec:probing}
+
+The behavioural result says the interviewer's questions move the prediction
+while barely changing the ranking. We asked what that looks like inside the
+model. The natural question is not whether the interviewer's words are
+represented---they are literally in the input---but whether they change how the
+model represents \emph{the patient's own words}.
+
+\paragraph{Setup.} For each of the 188 participants we ran the model under both
+interviewer contexts and pooled hidden states over \emph{only} the token
+positions belonging to the participant's turns, excluding every interviewer
+token. The participant text is byte-identical across the two conditions, so a
+lexical classifier on it scores exactly 0.500 and any separation must come from
+context. Layers 8, 16, 24 and 32; cross-validation grouped by participant, since
+each participant contributes one item to each condition.
+
+\paragraph{The contamination is total.} A linear probe separates the two
+conditions from the participant representation alone at \textbf{AUC 1.000 at
+every layer tested}, from layer 8 onward, against a shuffled-label control at
+0.48--0.53. It holds equally for a length-matched interviewer pool, so it is not
+an artifact of the participant's tokens sitting at different positions.
+
+\textbf{The interviewer's questions change how the model encodes the patient's
+words, completely and early.}
+
+\paragraph{But the contamination carries no information about the patient.}
+Perfect separability invites the conclusion that the model has built a rich
+context-dependent representation. It has not. Decomposing the per-participant
+shift $h_{\text{clinical}} - h_{\text{biographical}}$:
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+Layer & $\lVert$mean shift$\rVert$ / mean $\lVert$shift$\rVert$ & cosine to mean direction & CV of magnitude \\
+\midrule
+8  & 0.93 & 0.93 & 0.36 \\
+16 & 0.86 & 0.86 & 0.33 \\
+24 & 0.89 & 0.89 & 0.34 \\
+32 & 0.90 & 0.90 & 0.32 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Every participant is pushed in \emph{almost the same direction} (cosine $\approx
+0.9$), differing mainly in how far. The probe reaches 1.000 because it only has
+to detect a shared offset.
+
+\paragraph{And the part that does vary does not explain behaviour.} If this were
+the mechanism, participants pushed further should show larger prediction shifts.
+Correlating each participant's projected displacement with their behavioural
+shift $\Delta p$, controlling for total displacement magnitude, the best partial
+correlation is $r = 0.252$ $[0.110, 0.374]$ at layer 16. That looks positive
+until it is compared against the control the design requires: \textbf{random
+directions reach $r = 0.165$ and are significant in 2 of 4 layers, against 3 of
+8 for the real directions}, and at two layers a random direction outperforms the
+trained probe. The association is not direction-specific. It follows mechanically
+from the shift being a shared offset---projecting onto \emph{any} direction
+recovers the same per-participant magnitude.
+
+\paragraph{What this establishes.} The shortcut acts inside the model as a
+\textbf{near-uniform bias vector added to the representation of the patient's
+evidence}, not as a feature encoding anything about that patient. This is the
+representational form of the behavioural result: a constant offset in the
+representation produces a constant offset in the logit, which moves the decision
+threshold while leaving the ranking intact---AUC $0.764 \to 0.734$ while the
+proportion predicted depressed goes $16\% \to 74\%$. Two independent
+measurements, at different levels of the model, describing the same mechanism.
+
+It also explains why deleting the interviewer's turns recovers so much: removing
+a bias vector is all that is required, and nothing patient-specific is lost with
+it.
+
+\paragraph{What we did not establish.} These are correlational and linear
+results. We pre-registered a causal erasure stage---removing the direction with
+LEACE \citep{belrose2023leace} in the amnesic-probing framework
+\citep{elazar2021amnesic,dobrzeniecka2025improving}, with the shuffled-label
+control task as the baseline---to run only if the correlational stage passed
+direction-specificity. It did not, so we did not run it, and we make no causal
+claim. A shortcut encoded non-linearly would also be invisible to this analysis.
+
+\paragraph{Not every corpus has the same shortcut.} We tested whether the
+clinical-vocabulary effect appears in social-media mental-health data by
+measuring how well explicit clinical markers---diagnosis, therapy, medication
+terms---predict labels across five IMHI datasets. They reach AUC 0.510--0.583,
+against 0.773 for question selection in interviews, and only 10--16\% of posts
+contain any such marker. \textbf{The interview shortcut does not simply transfer;
+shortcuts are specific to how a corpus was collected.}
+
+\section{The shortcut crowds out the patient}
+\label{sec:cost}
+
+Knowing the interviewer moves the model tells us nothing until we know how much
+the \emph{patient} moves it. We built 200 matched pairs, each holding one
+interviewer's questions fixed byte-for-byte and swapping in two different
+patients---one depressed, one not---matched on how much they said.
+
+The model's responsiveness to the interviewer is \textbf{0.206}. Its
+responsiveness to the patient is \textbf{0.115}. On a task defined as assessing
+the patient, the loudest voice in the room is the clinician's, by a factor of
+$1.8$.
+
+The deployment consequence is concrete: \textbf{a clinician who probes more makes
+the model more likely to answer ``depressed,'' regardless of what the patient
+said}---and because the mechanism is a threshold shift, non-depressed patients
+bear the cost.
+
+\section{Mitigation}
+\label{sec:mitigate}
+
+\subsection{A taxonomy of shortcut mitigation}
+
+A shortcut can be attacked at exactly four points in the pipeline, and the
+choice determines both the cost and what the method assumes about the shortcut:
+
+\begin{enumerate}
+\item \textbf{Input level.} Change what the model sees---delete or neutralise
+      the shortcut-bearing region before scoring. Cheapest, but requires the
+      shortcut to be locatable in the input.
+\item \textbf{Inference level.} Change how the model is queried---marginalise
+      over the shortcut, instruct around it, or elicit reasoning. No input
+      surgery required.
+\item \textbf{Output level.} Change the score after the fact---estimate the
+      distortion the shortcut induces and subtract it. Leaves the model and its
+      input untouched.
+\item \textbf{Training level.} Change how the model learned---reweight
+      gradients, reshape the objective, or strip the factor from the
+      representation. The most powerful and the only family that requires
+      retraining.
+\end{enumerate}
+
+A second, orthogonal axis is whether the method must be \emph{told what the
+shortcut is}. Most must; the limited-capacity variant of product-of-experts
+\citep{sanh2020lmm} is the notable exception, discovering shortcuts from a weak
+model's errors.
+
+Table~\ref{tab:taxonomy} places the landscape---the methods we evaluate and the
+principal families we do not---in this scheme. \textbf{The published literature
+sits almost entirely at the training level}, which is also the only level that
+failed here.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Shortcut mitigation methods by level of intervention. $\Delta$AUC is
+relative to no mitigation (0.663 for the zero-shot model, 0.722 for the
+fine-tuned encoder). ``Named?'' indicates whether the method must be told what
+the shortcut is in advance.}
+\label{tab:taxonomy}
+\begin{tabular}{llccc}
+\toprule
+Level & Method & Retrain? & Named? & $\Delta$AUC \\
+\midrule
+\multirow{4}{*}{\textbf{Input}}
+ & \textbf{Delete the shortcut channel} & no & yes & $\mathbf{+0.126}$ \\
+ & Mask its content, keep its structure & no & yes & $+0.100$ \\
+ & Delete only the associated items & no & yes & $-0.034$ \\
+ & Rebalance the training distribution & no & yes & not run \\
+\midrule
+\multirow{5}{*}{\textbf{Inference}}
+ & \textbf{Marginalise over the channel (4 contexts)} & no & yes & $\mathbf{+0.101}$ \\
+ & Marginalise over the channel (2 contexts) & no & yes & $+0.095$ \\
+ & Anti-shortcut instruction & no & yes & $+0.089$ \\
+ & Chain-of-thought & no & no & $-0.084$ \\
+ & Counterfactual inference \citep{wu2025beyond} & no & yes & not run \\
+\midrule
+\multirow{2}{*}{\textbf{Output}}
+ & Threshold correction, oracle & no & yes & ceiling: 97.9\% recovered \\
+ & Threshold correction, observable proxy & no & yes & $+0.012$ \\
+\midrule
+\multirow{5}{*}{\textbf{Training}}
+ & Counterfactual augmentation & yes & yes & $+0.012$ \\
+ & Group-robust optimisation \citep{sagawa2019groupdro} & yes & yes & $-0.063$ \\
+ & Product-of-experts \citep{clark2019poe} & yes & yes & $\mathbf{-0.182}$ \\
+ & Limited-capacity PoE \citep{sanh2020lmm} & yes & \textbf{no} & not run \\
+ & Adversarial disentanglement \citep{zhang2025interviewerbias} & yes & yes & not run \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Every method reduces shortcut reliance. Only some leave a working
+model.}
+\label{sec:reveal}
+
+We first ask the question the mitigation literature asks: \emph{does the method
+reduce the model's dependence on the shortcut?} This is measured directly, by
+holding the patient's words byte-identical, swapping the interviewer's
+questions, and recording how much the prediction moves. Lower is better, and by
+this measure every method we tried succeeds:
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Method & Dependence on interviewer & Reduction \\
+\midrule
+No mitigation & 0.206 & --- \\
+Instruct the model to ignore it & 0.097 & $-53\%$ \\
+\textbf{Chain-of-thought} & \textbf{0.030} & $\mathbf{-85\%}$ \\
+Delete / mask / marginalise the channel & 0 & $-100\%^\dagger$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent Judged on this criterion alone, \textbf{chain-of-thought is the best
+method we tested}: it is the largest \emph{measured} reduction, since the
+$-100\%$ entries are zero by construction rather than by measurement---once the
+channel has been deleted or averaged out, no change to it can move anything.
+
+\paragraph{Now add utility.} The picture inverts.
+
+\begin{table}[t]
+\centering
+\caption{The same methods, with utility and attention to the patient added.
+Shortcut dependence falls for every method; only the input- and
+inference-averaging families leave a model that still works. Chain-of-thought
+achieves the largest measured reduction in shortcut dependence by answering
+``depressed'' to 98\% of patients, collapsing to near-chance discrimination.
+$^\dagger$ zero by construction. Training-level rows use the fine-tuned encoder
+and must be read against \emph{its} baseline (AUC 0.722, dependence 0.041), not
+the zero-shot model's.}
+\label{tab:mitigate}
+\begin{tabular}{llccc}
+\toprule
+Level & Method & Dependence $\downarrow$ & AUC $\uparrow$ & Resp.\ to patient $\uparrow$ \\
+\midrule
+--- & \textbf{No mitigation} & 0.206 & 0.663 & 0.115 \\
+\midrule
+\multirow{3}{*}{Input}
+ & \textbf{Delete all interviewer turns} & $0^\dagger$ & \textbf{0.787} & \textbf{0.203} \\
+ & Blank out interviewer words & $0^\dagger$ & 0.763 & 0.187 \\
+ & Delete only the clinical questions & --- & 0.665 & --- \\
+\midrule
+\multirow{4}{*}{Inference}
+ & \textbf{Average over 4 contexts} & $0^\dagger$ & \textbf{0.764} & --- \\
+ & Average over 2 contexts & $0^\dagger$ & 0.758 & --- \\
+ & Instruct model to ignore interviewer & 0.097 & 0.752 & 0.106 \\
+ & \textbf{Chain-of-thought} & \textbf{0.030} & \textbf{0.579} & \textbf{0.065} \\
+\midrule
+Output & Threshold correction, observable proxy & --- & 0.758 & --- \\
+\midrule
+\multirow{3}{*}{Training}
+ & Counterfactual augmentation & 0.034 & 0.734 & --- \\
+ & Group-robust optimisation & 0.044 & 0.659 & --- \\
+ & Product-of-experts & 0.004 & \textbf{0.540} & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Read Table~\ref{tab:mitigate} down the dependence column and every method looks
+like a success. Read it across, and two of them are not models any more.
+Chain-of-thought cuts dependence by 85\% and drops AUC to \textbf{0.579}, barely
+above the 0.5 of a coin flip. Product-of-experts cuts the encoder's dependence
+from 0.041 to \textbf{0.004}---a 90\% reduction, the largest measured anywhere in
+this work---while dropping its AUC from 0.722 to \textbf{0.540}. Both achieve
+their scores the same way: by ceasing to discriminate between patients at all. A
+model that gives everyone the same answer cannot be moved by anything, so its
+shortcut dependence is necessarily near zero.
+
+\textbf{This is the central methodological warning of the paper.} Shortcut
+dependence is the quantity the mitigation literature optimises, and it is
+trivially minimised by destroying the model. Any evaluation that does not report
+absolute utility alongside it will rank the two worst methods in
+Table~\ref{tab:mitigate} first and second.
+
+A third column is needed to separate the remaining cases. Instructing the model
+reduces dependence by half and preserves utility, but it also lowers
+responsiveness to the \emph{patient} (0.115 to 0.106): it suppresses without
+redirecting. Deleting the channel is the only family that improves all three at
+once---dependence to zero, AUC up 0.126, and attention to the patient nearly
+doubled.
+
+\subsection{Input level: remove the channel, but remove all of it}
+
+Deleting the interviewer's turns before scoring---one preprocessing step, no
+labels, no retraining---raises AUC from 0.663 to 0.787, a gain of $+0.126$
+[$+0.043$, $+0.210$]. Before the repair the model's ranking of patients is not
+statistically distinguishable from chance; afterwards it clearly is.
+
+\paragraph{The part we did not expect.} We assumed removing interview context
+would cost something. Instead, responsiveness to the patient \emph{rose} from
+0.115 to 0.203---almost exactly what the model had been spending on the
+interviewer---and it ranked patients correctly more often (76.5\% versus
+70.0\%). \textbf{The shortcut was not merely biasing the model; it was consuming
+its attention.}
+
+\paragraph{Surgical removal does not work.} A natural refinement is to delete
+only the offending questions rather than the whole channel. It fails, and it
+fails in the wrong direction: removing only the clinically loaded questions---the
+ten carrying every statistically significant association---makes the model
+\emph{worse} ($-0.034$). Removing all 47 scripted questions recovers only
+$+0.027$, still far short of removing the whole channel. The benefit is
+monotone in how much of the interviewer is removed, which is consistent with the
+harm being diffuse clinical vocabulary rather than a few identifiable questions.
+
+Blanking the interviewer's words while leaving the turns in place recovers most
+of the benefit (0.763 versus 0.787), so it is the words that matter, not the
+conversational structure. This variant is worth having where interview structure
+must be preserved for downstream use.
+
+\subsection{Inference level: average the channel out instead of deleting it}
+
+Deletion discards information. An alternative is to keep the transcript intact
+and \emph{marginalise} the shortcut: score the same patient under several
+different interviewer contexts and average the results. The average no longer
+depends on which context happened to occur.
+
+This works nearly as well as deletion. Averaging over four interviewer contexts
+reaches AUC \textbf{0.764} ($+0.101$), and even two contexts reach 0.758. It
+costs $k$ forward passes instead of one, and it does not require deciding what
+counts as ``the interviewer'' in the input---an advantage when the shortcut
+channel cannot be cleanly separated. \textbf{This is a second working family,
+with a different mechanism and a different cost profile from deletion.}
+
+Instructing the model to ignore the interviewer also helps ($+0.089$) and cuts
+responsiveness to the interviewer by half, but it slightly \emph{reduces}
+responsiveness to the patient (0.115 to 0.106), so it suppresses without
+redirecting.
+
+Chain-of-thought belongs to this level too, and fails at it for the reason given
+in \S\ref{sec:reveal}: it buys its 85\% reduction in shortcut dependence by
+answering ``depressed'' to 98\% of patients. Its written reasoning is
+nonetheless the clearest qualitative evidence we have of the shortcut
+(\S\ref{sec:forms}).
+
+\subsection{Output level: the mechanistically matched repair, bottlenecked on
+estimation}
+
+Because the shortcut acts as a threshold shift (\S\ref{sec:forms}), correcting
+the threshold should in principle recover almost everything: re-scoring at an
+oracle threshold recovers 97.9\% of the lost accuracy. The difficulty is
+estimating the shift without labels. Regressing the observed shift on an
+observable property of the interviewer's turns---the density of clinical
+vocabulary---and subtracting the prediction yields only $+0.012$ AUC, because
+that proxy correlates with the true shift at just $r = 0.07$. The shift is real
+and large, but not predictable from simple lexical statistics. \textbf{We report
+this as a negative result: threshold correction is the mechanistically matched
+repair, and it is bottlenecked on estimating the shift, not on applying it.}
+
+\subsection{Training level: nothing to remove}
+
+We fine-tuned \texttt{MentalBERT} on DAIC and applied three standard methods.
+None improved on plain fine-tuning (0.722): counterfactual augmentation reached
+0.734, group-robust optimisation \citep{sagawa2019groupdro} 0.659, and
+product-of-experts \citep{clark2019poe,sanh2020lmm} \textbf{0.540}---barely above
+chance, consistently across seeds.
+
+The reason is that this model has a different relationship to the shortcut.
+Given only interviewer turns it predicts at AUC 0.676---it has genuinely learned
+the shortcut, where the zero-shot model could not read it at all. Yet swapping
+the questions barely moves it (responsiveness 0.041 against the language model's
+0.206). Standard debiasing removes a \emph{learned reliance}; here there is
+encoding without reliance, so there is nothing to remove. Product-of-experts
+fails hardest because it suppresses learning wherever a bias-only model already
+predicts well, and here that bias-only model (0.773) is nearly as accurate as
+the full one, so it suppresses almost everything.
+
+Counterfactual augmentation produced one real benefit unrelated to shortcuts: it
+cut run-to-run variance from 0.059 to 0.008, making training markedly more
+stable.
+
+\paragraph{What this means for practitioners.} Two families work, and both are
+inference-time: remove the shortcut channel from the input, or average over it.
+Deletion is cheaper and stronger; marginalisation avoids having to segment the
+input and degrades more gracefully when the channel is not cleanly separable.
+Everything requiring retraining either failed or, in one case, destroyed the
+model---not because those methods are unsound, but because \textbf{which
+mitigation can work depends on what the model is doing with the shortcut, not on
+the method's pedigree.}
+
+\section{Related work}
+
+\citet{burdisso2024daicwoz} established the DAIC interviewer shortcut and
+exploited it to 0.90 F1; we replicate their finding and treat it as our starting
+point. The difference is that they study models \emph{trained} on DAIC and detect
+the shortcut by removal, whereas we show that on a domain-specific model used
+zero-shot, removal reports nothing and only counterfactual substitution reveals
+the effect.
+
+Existing mitigations for interviewer bias retrain the model:
+\citet{zhang2025interviewerbias} strip interviewer information adversarially and
+\citet{li2026depflow} generate counterfactual speech. The general-purpose
+debiasing families---product-of-experts \citep{clark2019poe,sanh2020lmm} and
+group-robust optimisation \citep{sagawa2019groupdro}---share that requirement;
+we evaluate both. \citet{wu2025beyond} is the closest inference-time
+alternative. On whether post-training changes susceptibility to spurious
+features, \citet{shuieh2025robustness} report mixed effects on synthetic tasks;
+our Form-3 result is a real-data case where a post-training stage introduces a
+corpus-prior default that was not present earlier.
+
+\section{Limitations}
+\label{sec:limitations}
+
+\textbf{We cannot say whether question selection is a shortcut or legitimate
+evidence.} A clinician reading a transcript would also infer something from
+which questions were asked. Separating the two requires showing whether the
+effect survives a change of interviewer or protocol, and we could not test this.
+Three routes failed: splitting DAIC by interview topic does not work because in
+an adaptive interview a change of protocol \emph{is} a change in patient
+population (our splits differed in depression rate sevenfold); a topic-by-topic
+ablation was too underpowered; and transfer to a second corpus collapsed when we
+found no comparable shortcut there (\S\ref{sec:forms}). All interview results
+are one corpus, one interviewer, one protocol.
+
+\textbf{Power.} The fine-tuned encoder learns from 107 examples with run-to-run
+variation up to 0.096 AUC; its group-robust result reflects that limit rather
+than a judgment on the method. The post-training analysis covers one benchmark
+of 300 items.
+
+\textbf{Construction.} The matched pairs in \S\ref{sec:cost} are assembled
+transcripts splicing one patient's turns under another's interviewer questions.
+Turn counts are matched, but a model sensitive to the seam would inflate the
+patient-responsiveness numbers---which works against our deletion result, whose
+inputs contain no seam.
+
+\section{Conclusion}
+
+Domain-specific mental-health language models are built by fine-tuning on
+mental-health corpora and validated on those same corpora. We asked whether the
+resulting scores reflect clinical understanding, and found substantial shortcut
+learning that the field's standard check does not detect. The shortcuts take
+concrete forms---the clinician's choice of questions, surface clinical
+vocabulary, and a corpus-prior default introduced by post-training itself---and
+their cost is measurable: the model attends to the clinician nearly twice as
+much as to the patient.
+
+Two mitigations work, and both act at inference time rather than in training.
+Deleting the clinician's turns is the strongest, and it works for a reason worth
+stating plainly: it does not merely suppress a bias, it returns the model's
+attention to the person it is supposed to be assessing. Averaging the prediction
+over several interviewer contexts recovers almost as much without requiring the
+input to be segmented, which matters wherever the shortcut channel cannot be
+cleanly separated.
+
+Two negative results are worth as much as these. Removing only the questions
+that carry the statistical association makes the model \emph{worse}, so the harm
+is diffuse rather than localised. And every method that required retraining
+failed, one of them catastrophically---not because those methods are unsound,
+but because they remove a learned reliance, and the model we applied them to had
+encoded the shortcut without relying on it. Matching the mitigation to what the
+model is actually doing mattered more than the choice of method.
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\end{document}

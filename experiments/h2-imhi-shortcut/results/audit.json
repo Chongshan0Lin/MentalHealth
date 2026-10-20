@@ -1,0 +1,155 @@
+{
+  "P1": {
+    "n_labels": 23,
+    "global_majority": 0.20636755280025218,
+    "source_majority": 0.4423662918987076
+  },
+  "P2": {
+    "source_id": 0.5222714799547595,
+    "source_id_stopwords": 0.37151075994359717,
+    "chance": 0.1111111111111111
+  },
+  "P3": {
+    "swmh": {
+      "n": 10865,
+      "n_labels": 5,
+      "chance": 0.2,
+      "majority": 0.34735388863322597,
+      "text": 0.6838676177408024,
+      "stopword": 0.37368571433754294
+    },
+    "MultiWD": {
+      "n": 2441,
+      "n_labels": 2,
+      "chance": 0.5,
+      "majority": 0.6366243342892257,
+      "text": 0.4988415295630628,
+      "stopword": 0.5002015624901758
+    },
+    "Irf": {
+      "n": 2113,
+      "n_labels": 2,
+      "chance": 0.5,
+      "majority": 0.6464742072882158,
+      "text": 0.6433915260848174,
+      "stopword": 0.6222209482145272
+    },
+    "t-sid": {
+      "n": 959,
+      "n_labels": 4,
+      "chance": 0.25,
+      "majority": 0.5224191866527633,
+      "text": 0.6183480433426832,
+      "stopword": 0.37528913840038397
+    },
+    "SAD": {
+      "n": 684,
+      "n_labels": 9,
+      "chance": 0.1111111111111111,
+      "majority": 0.1608187134502924,
+      "text": 0.41581963350089785,
+      "stopword": 0.19321203604726078
+    },
+    "CAMS": {
+      "n": 625,
+      "n_labels": 6,
+      "chance": 0.16666666666666666,
+      "majority": 0.2944,
+      "text": 0.3030467269452179,
+      "stopword": 0.2863964661383258
+    },
+    "loneliness": {
+      "n": 528,
+      "n_labels": 2,
+      "chance": 0.5,
+      "majority": 0.7821969696969697,
+      "text": 0.6346773344562585,
+      "stopword": 0.5974032354282907
+    },
+    "dreaddit": {
+      "n": 414,
+      "n_labels": 2,
+      "chance": 0.5,
+      "majority": 0.5096618357487923,
+      "text": 0.6918186133744232,
+      "stopword": 0.591121331683515
+    },
+    "DR": {
+      "n": 405,
+      "n_labels": 2,
+      "chance": 0.5,
+      "majority": 0.7580246913580246,
+      "text": 0.7690564825278644,
+      "stopword": 0.7124243834341554
+    }
+  },
+  "P4": {
+    "swmh": {
+      "n": 10865,
+      "verbatim": 0.8151863782788771,
+      "template": 1.0,
+      "n_labels": 5
+    },
+    "MultiWD": {
+      "n": 2441,
+      "verbatim": 1.0,
+      "template": 0.0,
+      "n_labels": 2
+    },
+    "Irf": {
+      "n": 2113,
+      "verbatim": 1.0,
+      "template": 0.0,
+      "n_labels": 2
+    },
+    "t-sid": {
+      "n": 959,
+      "verbatim": 0.47758081334723673,
+      "template": 1.0,
+      "n_labels": 4
+    },
+    "SAD": {
+      "n": 684,
+      "verbatim": 1.0,
+      "template": 1.0,
+      "n_labels": 9
+    },
+    "CAMS": {
+      "n": 625,
+      "verbatim": 0.8864,
+      "template": 1.0,
+      "n_labels": 6
+    },
+    "loneliness": {
+      "n": 528,
+      "verbatim": 1.0,
+      "template": 0.0,
+      "n_labels": 2
+    },
+    "dreaddit": {
+      "n": 414,
+      "verbatim": 1.0,
+      "template": 0.0,
+      "n_labels": 2
+    },
+    "DR": {
+      "n": 405,
+      "verbatim": 1.0,
+      "template": 0.0,
+      "n_labels": 2
+    }
+  },
+  "P5": {
+    "distinct": 15515,
+    "rows": 19034,
+    "cross_source": 372,
+    "within_source_dups": 1040,
+    "conflicting": 288
+  },
+  "P6": {
+    "full": 0.6838676177408024,
+    "scrubbed": 0.5935161157256701,
+    "stopword": 0.37368571433754294,
+    "chance": 0.2
+  }
+}

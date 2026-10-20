@@ -1,0 +1,981 @@
+{
+  "clusters": {
+    "clinical_care": [
+      "why_seek_help",
+      "therapy_going",
+      "when_diagnosed",
+      "therapy_changes",
+      "therapy_useful",
+      "trigger",
+      "bouts_symptoms",
+      "symptoms_cope",
+      "behavior_changes",
+      "sleep_affects"
+    ],
+    "parenting": [
+      "parent_best",
+      "parent_hardest",
+      "easy_parent",
+      "parent_differences"
+    ],
+    "la_relocation": [
+      "adapted_LA",
+      "when_LA",
+      "why_LA",
+      "compares_LA",
+      "like_about_LA",
+      "dont_like_LA",
+      "often_backB"
+    ],
+    "travel_leisure": [
+      "ideal_weekendC",
+      "travel_trips",
+      "travel_changed",
+      "Ellie17Dec2012_10"
+    ],
+    "self_concept": [
+      "Ellie17Dec2012_07",
+      "self_change",
+      "BF_describe",
+      "influence_positive"
+    ],
+    "affect_and_memory": [
+      "feelguilty",
+      "regret",
+      "memory_erase",
+      "feelbadly",
+      "memorableB",
+      "describe_felt",
+      "difficult"
+    ],
+    "family": [
+      "family_relationship"
+    ],
+    "life_events_decisions": [
+      "still_working_on_X",
+      "hard_decision",
+      "change_directions",
+      "landed_trouble",
+      "avoid",
+      "happy_didthat",
+      "great_situation"
+    ],
+    "generic_probe": [
+      "why2",
+      "tell_about_that",
+      "give_example"
+    ]
+  },
+  "of_prompt": {
+    "why_seek_help": "clinical_care",
+    "therapy_going": "clinical_care",
+    "when_diagnosed": "clinical_care",
+    "therapy_changes": "clinical_care",
+    "therapy_useful": "clinical_care",
+    "trigger": "clinical_care",
+    "bouts_symptoms": "clinical_care",
+    "symptoms_cope": "clinical_care",
+    "behavior_changes": "clinical_care",
+    "sleep_affects": "clinical_care",
+    "parent_best": "parenting",
+    "parent_hardest": "parenting",
+    "easy_parent": "parenting",
+    "parent_differences": "parenting",
+    "adapted_LA": "la_relocation",
+    "when_LA": "la_relocation",
+    "why_LA": "la_relocation",
+    "compares_LA": "la_relocation",
+    "like_about_LA": "la_relocation",
+    "dont_like_LA": "la_relocation",
+    "often_backB": "la_relocation",
+    "ideal_weekendC": "travel_leisure",
+    "travel_trips": "travel_leisure",
+    "travel_changed": "travel_leisure",
+    "Ellie17Dec2012_10": "travel_leisure",
+    "Ellie17Dec2012_07": "self_concept",
+    "self_change": "self_concept",
+    "BF_describe": "self_concept",
+    "influence_positive": "self_concept",
+    "feelguilty": "affect_and_memory",
+    "regret": "affect_and_memory",
+    "memory_erase": "affect_and_memory",
+    "feelbadly": "affect_and_memory",
+    "memorableB": "affect_and_memory",
+    "describe_felt": "affect_and_memory",
+    "difficult": "affect_and_memory",
+    "family_relationship": "family",
+    "still_working_on_X": "life_events_decisions",
+    "hard_decision": "life_events_decisions",
+    "change_directions": "life_events_decisions",
+    "landed_trouble": "life_events_decisions",
+    "avoid": "life_events_decisions",
+    "happy_didthat": "life_events_decisions",
+    "great_situation": "life_events_decisions",
+    "why2": "generic_probe",
+    "tell_about_that": "generic_probe",
+    "give_example": "generic_probe"
+  },
+  "dominant_cluster": {
+    "daic/train/363": {
+      "cluster": "affect_and_memory",
+      "share": 0.23529411764705882,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 17
+    },
+    "daic/train/364": {
+      "cluster": "clinical_care",
+      "share": 0.25,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 16
+    },
+    "daic/train/366": {
+      "cluster": "affect_and_memory",
+      "share": 0.2222222222222222,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 18
+    },
+    "daic/train/368": {
+      "cluster": "la_relocation",
+      "share": 0.18181818181818182,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 11
+    },
+    "daic/train/369": {
+      "cluster": "affect_and_memory",
+      "share": 0.26666666666666666,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 15
+    },
+    "daic/train/370": {
+      "cluster": "affect_and_memory",
+      "share": 0.4166666666666667,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 12
+    },
+    "daic/train/371": {
+      "cluster": "generic_probe",
+      "share": 0.20689655172413793,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 29
+    },
+    "daic/train/372": {
+      "cluster": "clinical_care",
+      "share": 0.2608695652173913,
+      "split": "train",
+      "y": 1,
+      "n_clustered_prompts": 23
+    },
+    "daic/train/374": {
+      "cluster": "clinical_care",
+      "share": 0.3333333333333333,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 24
+    },
+    "daic/train/375": {
+      "cluster": "affect_and_memory",
+      "share": 0.30434782608695654,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 23
+    },
+    "daic/train/376": {
+      "cluster": "clinical_care",
+      "share": 0.3,
+      "split": "train",
+      "y": 1,
+      "n_clustered_prompts": 20
+    },
+    "daic/train/379": {
+      "cluster": "affect_and_memory",
+      "share": 0.36363636363636365,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 22
+    },
+    "daic/train/380": {
+      "cluster": "affect_and_memory",
+      "share": 0.21052631578947367,
+      "split": "train",
+      "y": 1,
+      "n_clustered_prompts": 19
+    },
+    "daic/train/383": {
+      "cluster": "affect_and_memory",
+      "share": 0.1875,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 16
+    },
+    "daic/train/385": {
+      "cluster": "affect_and_memory",
+      "share": 0.20833333333333334,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 24
+    },
+    "daic/train/386": {
+      "cluster": "la_relocation",
+      "share": 0.2608695652173913,
+      "split": "train",
+      "y": 1,
+      "n_clustered_prompts": 23
+    },
+    "daic/train/391": {
+      "cluster": "generic_probe",
+      "share": 0.23076923076923078,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 26
+    },
+    "daic/train/392": {
+      "cluster": "affect_and_memory",
+      "share": 0.22727272727272727,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 22
+    },
+    "daic/train/393": {
+      "cluster": "affect_and_memory",
+      "share": 0.21052631578947367,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 19
+    },
+    "daic/train/397": {
+      "cluster": "affect_and_memory",
+      "share": 0.22580645161290322,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 31
+    },
+    "daic/train/400": {
+      "cluster": "generic_probe",
+      "share": 0.1875,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 32
+    },
+    "daic/train/401": {
+      "cluster": "la_relocation",
+      "share": 0.2692307692307692,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 26
+    },
+    "daic/train/402": {
+      "cluster": "la_relocation",
+      "share": 0.2608695652173913,
+      "split": "train",
+      "y": 1,
+      "n_clustered_prompts": 23
+    },
+    "daic/train/409": {
+      "cluster": "life_events_decisions",
+      "share": 0.25,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 12
+    },
+    "daic/train/412": {
+      "cluster": "la_relocation",
+      "share": 0.1875,
+      "split": "train",
+      "y": 1,
+      "n_clustered_prompts": 32
+    },
+    "daic/train/414": {
+      "cluster": "life_events_decisions",
+      "share": 0.21052631578947367,
+      "split": "train",
+      "y": 1,
+      "n_clustered_prompts": 19
+    },
+    "daic/train/415": {
+      "cluster": "la_relocation",
+      "share": 0.25,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 24
+    },
+    "daic/train/416": {
+      "cluster": "la_relocation",
+      "share": 0.21875,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 32
+    },
+    "daic/train/419": {
+      "cluster": "la_relocation",
+      "share": 0.2222222222222222,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 18
+    },
+    "daic/train/423": {
+      "cluster": "generic_probe",
+      "share": 0.22580645161290322,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 31
+    },
+    "daic/train/425": {
+      "cluster": "clinical_care",
+      "share": 0.25,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 20
+    },
+    "daic/train/426": {
+      "cluster": "generic_probe",
+      "share": 0.23333333333333334,
+      "split": "train",
+      "y": 1,
+      "n_clustered_prompts": 30
+    },
+    "daic/train/427": {
+      "cluster": "la_relocation",
+      "share": 0.21428571428571427,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 28
+    },
+    "daic/train/428": {
+      "cluster": "generic_probe",
+      "share": 0.2222222222222222,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 27
+    },
+    "daic/train/429": {
+      "cluster": "la_relocation",
+      "share": 0.26666666666666666,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 30
+    },
+    "daic/train/430": {
+      "cluster": "clinical_care",
+      "share": 0.2692307692307692,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 26
+    },
+    "daic/train/433": {
+      "cluster": "generic_probe",
+      "share": 0.3076923076923077,
+      "split": "train",
+      "y": 1,
+      "n_clustered_prompts": 26
+    },
+    "daic/train/434": {
+      "cluster": "la_relocation",
+      "share": 0.3,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 20
+    },
+    "daic/train/437": {
+      "cluster": "affect_and_memory",
+      "share": 0.23076923076923078,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 26
+    },
+    "daic/train/441": {
+      "cluster": "clinical_care",
+      "share": 0.24444444444444444,
+      "split": "train",
+      "y": 1,
+      "n_clustered_prompts": 45
+    },
+    "daic/train/443": {
+      "cluster": "generic_probe",
+      "share": 0.3,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 30
+    },
+    "daic/train/444": {
+      "cluster": "la_relocation",
+      "share": 0.2222222222222222,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 18
+    },
+    "daic/train/445": {
+      "cluster": "affect_and_memory",
+      "share": 0.2916666666666667,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 24
+    },
+    "daic/train/446": {
+      "cluster": "affect_and_memory",
+      "share": 0.23529411764705882,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 17
+    },
+    "daic/train/447": {
+      "cluster": "affect_and_memory",
+      "share": 0.23809523809523808,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 21
+    },
+    "daic/train/448": {
+      "cluster": "clinical_care",
+      "share": 0.42857142857142855,
+      "split": "train",
+      "y": 1,
+      "n_clustered_prompts": 14
+    },
+    "daic/train/449": {
+      "cluster": "parenting",
+      "share": 0.2857142857142857,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 14
+    },
+    "daic/train/454": {
+      "cluster": "generic_probe",
+      "share": 0.1794871794871795,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 39
+    },
+    "daic/train/455": {
+      "cluster": "la_relocation",
+      "share": 0.375,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 16
+    },
+    "daic/train/456": {
+      "cluster": "la_relocation",
+      "share": 0.22580645161290322,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 31
+    },
+    "daic/train/457": {
+      "cluster": "la_relocation",
+      "share": 0.25,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 28
+    },
+    "daic/train/459": {
+      "cluster": "clinical_care",
+      "share": 0.21621621621621623,
+      "split": "train",
+      "y": 1,
+      "n_clustered_prompts": 37
+    },
+    "daic/train/463": {
+      "cluster": "affect_and_memory",
+      "share": 0.21428571428571427,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 28
+    },
+    "daic/train/464": {
+      "cluster": "affect_and_memory",
+      "share": 0.2222222222222222,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 18
+    },
+    "daic/train/468": {
+      "cluster": "affect_and_memory",
+      "share": 0.2631578947368421,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 19
+    },
+    "daic/train/471": {
+      "cluster": "affect_and_memory",
+      "share": 0.21739130434782608,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 23
+    },
+    "daic/train/473": {
+      "cluster": "la_relocation",
+      "share": 0.21875,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 32
+    },
+    "daic/train/474": {
+      "cluster": "la_relocation",
+      "share": 0.25925925925925924,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 27
+    },
+    "daic/train/475": {
+      "cluster": "affect_and_memory",
+      "share": 0.25,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 20
+    },
+    "daic/train/478": {
+      "cluster": "clinical_care",
+      "share": 0.26666666666666666,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 30
+    },
+    "daic/train/479": {
+      "cluster": "generic_probe",
+      "share": 0.20689655172413793,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 29
+    },
+    "daic/train/485": {
+      "cluster": "la_relocation",
+      "share": 0.2413793103448276,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 29
+    },
+    "daic/train/486": {
+      "cluster": "la_relocation",
+      "share": 0.24,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 25
+    },
+    "daic/train/487": {
+      "cluster": "la_relocation",
+      "share": 0.3157894736842105,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 19
+    },
+    "daic/train/488": {
+      "cluster": "affect_and_memory",
+      "share": 0.2777777777777778,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 18
+    },
+    "daic/train/491": {
+      "cluster": "clinical_care",
+      "share": 0.20689655172413793,
+      "split": "train",
+      "y": 0,
+      "n_clustered_prompts": 29
+    },
+    "daic/dev/367": {
+      "cluster": "clinical_care",
+      "share": 0.42105263157894735,
+      "split": "dev",
+      "y": 1,
+      "n_clustered_prompts": 19
+    },
+    "daic/dev/377": {
+      "cluster": "la_relocation",
+      "share": 0.23076923076923078,
+      "split": "dev",
+      "y": 1,
+      "n_clustered_prompts": 39
+    },
+    "daic/dev/381": {
+      "cluster": "affect_and_memory",
+      "share": 0.25,
+      "split": "dev",
+      "y": 1,
+      "n_clustered_prompts": 24
+    },
+    "daic/dev/382": {
+      "cluster": "la_relocation",
+      "share": 0.2692307692307692,
+      "split": "dev",
+      "y": 0,
+      "n_clustered_prompts": 26
+    },
+    "daic/dev/388": {
+      "cluster": "la_relocation",
+      "share": 0.30434782608695654,
+      "split": "dev",
+      "y": 1,
+      "n_clustered_prompts": 23
+    },
+    "daic/dev/389": {
+      "cluster": "la_relocation",
+      "share": 0.19444444444444445,
+      "split": "dev",
+      "y": 1,
+      "n_clustered_prompts": 36
+    },
+    "daic/dev/390": {
+      "cluster": "clinical_care",
+      "share": 0.28,
+      "split": "dev",
+      "y": 0,
+      "n_clustered_prompts": 25
+    },
+    "daic/dev/395": {
+      "cluster": "affect_and_memory",
+      "share": 0.24,
+      "split": "dev",
+      "y": 0,
+      "n_clustered_prompts": 25
+    },
+    "daic/dev/403": {
+      "cluster": "affect_and_memory",
+      "share": 0.3181818181818182,
+      "split": "dev",
+      "y": 0,
+      "n_clustered_prompts": 22
+    },
+    "daic/dev/404": {
+      "cluster": "affect_and_memory",
+      "share": 0.25,
+      "split": "dev",
+      "y": 0,
+      "n_clustered_prompts": 20
+    },
+    "daic/dev/406": {
+      "cluster": "affect_and_memory",
+      "share": 0.21052631578947367,
+      "split": "dev",
+      "y": 0,
+      "n_clustered_prompts": 19
+    },
+    "daic/dev/413": {
+      "cluster": "clinical_care",
+      "share": 0.24,
+      "split": "dev",
+      "y": 1,
+      "n_clustered_prompts": 25
+    },
+    "daic/dev/417": {
+      "cluster": "affect_and_memory",
+      "share": 0.2222222222222222,
+      "split": "dev",
+      "y": 0,
+      "n_clustered_prompts": 18
+    },
+    "daic/dev/418": {
+      "cluster": "clinical_care",
+      "share": 0.2608695652173913,
+      "split": "dev",
+      "y": 1,
+      "n_clustered_prompts": 23
+    },
+    "daic/dev/420": {
+      "cluster": "generic_probe",
+      "share": 0.21621621621621623,
+      "split": "dev",
+      "y": 0,
+      "n_clustered_prompts": 37
+    },
+    "daic/dev/422": {
+      "cluster": "la_relocation",
+      "share": 0.3076923076923077,
+      "split": "dev",
+      "y": 1,
+      "n_clustered_prompts": 13
+    },
+    "daic/dev/436": {
+      "cluster": "affect_and_memory",
+      "share": 0.2916666666666667,
+      "split": "dev",
+      "y": 0,
+      "n_clustered_prompts": 24
+    },
+    "daic/dev/439": {
+      "cluster": "affect_and_memory",
+      "share": 0.26666666666666666,
+      "split": "dev",
+      "y": 0,
+      "n_clustered_prompts": 15
+    },
+    "daic/dev/472": {
+      "cluster": "affect_and_memory",
+      "share": 0.2,
+      "split": "dev",
+      "y": 0,
+      "n_clustered_prompts": 25
+    },
+    "daic/dev/476": {
+      "cluster": "generic_probe",
+      "share": 0.2,
+      "split": "dev",
+      "y": 0,
+      "n_clustered_prompts": 25
+    },
+    "daic/dev/477": {
+      "cluster": "la_relocation",
+      "share": 0.22727272727272727,
+      "split": "dev",
+      "y": 0,
+      "n_clustered_prompts": 22
+    },
+    "daic/dev/482": {
+      "cluster": "la_relocation",
+      "share": 0.15,
+      "split": "dev",
+      "y": 0,
+      "n_clustered_prompts": 20
+    },
+    "daic/dev/483": {
+      "cluster": "la_relocation",
+      "share": 0.24,
+      "split": "dev",
+      "y": 1,
+      "n_clustered_prompts": 25
+    },
+    "daic/dev/484": {
+      "cluster": "clinical_care",
+      "share": 0.3,
+      "split": "dev",
+      "y": 0,
+      "n_clustered_prompts": 20
+    },
+    "daic/dev/489": {
+      "cluster": "affect_and_memory",
+      "share": 0.25,
+      "split": "dev",
+      "y": 0,
+      "n_clustered_prompts": 28
+    },
+    "daic/dev/490": {
+      "cluster": "la_relocation",
+      "share": 0.1724137931034483,
+      "split": "dev",
+      "y": 0,
+      "n_clustered_prompts": 29
+    },
+    "daic/dev/492": {
+      "cluster": "la_relocation",
+      "share": 0.3181818181818182,
+      "split": "dev",
+      "y": 0,
+      "n_clustered_prompts": 22
+    },
+    "daic/test/365": {
+      "cluster": "la_relocation",
+      "share": 0.2916666666666667,
+      "split": "test",
+      "y": 1,
+      "n_clustered_prompts": 24
+    },
+    "daic/test/373": {
+      "cluster": "la_relocation",
+      "share": 0.3333333333333333,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 18
+    },
+    "daic/test/378": {
+      "cluster": "la_relocation",
+      "share": 0.23809523809523808,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 21
+    },
+    "daic/test/384": {
+      "cluster": "generic_probe",
+      "share": 0.2619047619047619,
+      "split": "test",
+      "y": 1,
+      "n_clustered_prompts": 42
+    },
+    "daic/test/387": {
+      "cluster": "la_relocation",
+      "share": 0.18181818181818182,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 22
+    },
+    "daic/test/396": {
+      "cluster": "la_relocation",
+      "share": 0.25,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 28
+    },
+    "daic/test/399": {
+      "cluster": "affect_and_memory",
+      "share": 0.25,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 20
+    },
+    "daic/test/405": {
+      "cluster": "la_relocation",
+      "share": 0.3181818181818182,
+      "split": "test",
+      "y": 1,
+      "n_clustered_prompts": 22
+    },
+    "daic/test/407": {
+      "cluster": "la_relocation",
+      "share": 0.3,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 10
+    },
+    "daic/test/408": {
+      "cluster": "affect_and_memory",
+      "share": 0.25,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 24
+    },
+    "daic/test/410": {
+      "cluster": "affect_and_memory",
+      "share": 0.22727272727272727,
+      "split": "test",
+      "y": 1,
+      "n_clustered_prompts": 22
+    },
+    "daic/test/411": {
+      "cluster": "affect_and_memory",
+      "share": 0.2857142857142857,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 14
+    },
+    "daic/test/421": {
+      "cluster": "generic_probe",
+      "share": 0.17647058823529413,
+      "split": "test",
+      "y": 1,
+      "n_clustered_prompts": 34
+    },
+    "daic/test/424": {
+      "cluster": "affect_and_memory",
+      "share": 0.20833333333333334,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 24
+    },
+    "daic/test/431": {
+      "cluster": "la_relocation",
+      "share": 0.20588235294117646,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 34
+    },
+    "daic/test/432": {
+      "cluster": "la_relocation",
+      "share": 0.20689655172413793,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 29
+    },
+    "daic/test/435": {
+      "cluster": "clinical_care",
+      "share": 0.22857142857142856,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 35
+    },
+    "daic/test/438": {
+      "cluster": "la_relocation",
+      "share": 0.2,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 10
+    },
+    "daic/test/442": {
+      "cluster": "la_relocation",
+      "share": 0.23333333333333334,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 30
+    },
+    "daic/test/450": {
+      "cluster": "clinical_care",
+      "share": 0.21739130434782608,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 23
+    },
+    "daic/test/452": {
+      "cluster": "affect_and_memory",
+      "share": 0.22727272727272727,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 22
+    },
+    "daic/test/453": {
+      "cluster": "clinical_care",
+      "share": 0.25,
+      "split": "test",
+      "y": 1,
+      "n_clustered_prompts": 40
+    },
+    "daic/test/461": {
+      "cluster": "clinical_care",
+      "share": 0.25,
+      "split": "test",
+      "y": 1,
+      "n_clustered_prompts": 32
+    },
+    "daic/test/462": {
+      "cluster": "affect_and_memory",
+      "share": 0.2777777777777778,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 18
+    },
+    "daic/test/465": {
+      "cluster": "affect_and_memory",
+      "share": 0.2857142857142857,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 21
+    },
+    "daic/test/466": {
+      "cluster": "clinical_care",
+      "share": 0.4482758620689655,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 29
+    },
+    "daic/test/467": {
+      "cluster": "generic_probe",
+      "share": 0.17857142857142858,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 28
+    },
+    "daic/test/469": {
+      "cluster": "clinical_care",
+      "share": 0.3333333333333333,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 24
+    },
+    "daic/test/470": {
+      "cluster": "affect_and_memory",
+      "share": 0.25925925925925924,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 27
+    },
+    "daic/test/481": {
+      "cluster": "clinical_care",
+      "share": 0.24,
+      "split": "test",
+      "y": 0,
+      "n_clustered_prompts": 25
+    }
+  }
+}

@@ -1,0 +1,201 @@
+% ===================================================================
+% VERIFIED ENTRIES
+% Retrieved via Semantic Scholar + arXiv API on 2026-08-21; queries and
+% raw metadata logged in literature/raw.jsonl, literature/raw2.jsonl and
+% logs/litsearch.log. Not written from memory.
+% ===================================================================
+
+@inproceedings{burdisso2024daicwoz,
+  title     = {{DAIC-WOZ}: On the Validity of Using the Therapist's Prompts in
+               Automatic Depression Detection from Clinical Interviews},
+  author    = {Burdisso, Sergio and Reyes-Ram{\'i}rez, Ernesto and
+               Villatoro-Tello, Esa{\'u} and S{\'a}nchez-Vega, Fernando and
+               L{\'o}pez-Monroy, Adri{\'a}n Pastor and Motlicek, Petr},
+  booktitle = {Proceedings of the 6th Clinical Natural Language Processing
+               Workshop},
+  year      = {2024},
+  eprint    = {2404.14463},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+@inproceedings{zhang2025interviewerbias,
+  title     = {Mitigating Interviewer Bias in Multimodal Depression Detection:
+               An Approach with Adversarial Learning and Contextual Positional
+               Encoding},
+  author    = {Zhang, Enshi and Poellabauer, Christian},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP
+               2025},
+  year      = {2025},
+  doi       = {10.18653/v1/2025.findings-emnlp.650}
+}
+
+@article{li2026depflow,
+  title   = {{DepFlow}: Disentangled Speech Generation to Mitigate Semantic Bias
+             in Depression Detection},
+  author  = {Li, Yang and Zhang, Wei and Li, Jing and Guo, Ming},
+  journal = {arXiv preprint arXiv:2601.00303},
+  year    = {2026},
+  eprint  = {2601.00303},
+  archivePrefix = {arXiv}
+}
+
+@article{clark2019poe,
+  title   = {Don't Take the Easy Way Out: Ensemble Based Methods for Avoiding
+             Known Dataset Biases},
+  author  = {Clark, Christopher and Yatskar, Mark and Zettlemoyer, Luke},
+  journal = {arXiv preprint arXiv:1909.03683},
+  year    = {2019},
+  eprint  = {1909.03683},
+  archivePrefix = {arXiv}
+}
+
+@article{sanh2020lmm,
+  title   = {Learning from Others' Mistakes: Avoiding Dataset Biases without
+             Modeling Them},
+  author  = {Sanh, Victor and Wolf, Thomas and Belinkov, Yonatan and
+             Rush, Alexander M.},
+  journal = {arXiv preprint arXiv:2012.01300},
+  year    = {2020},
+  eprint  = {2012.01300},
+  archivePrefix = {arXiv}
+}
+
+@article{sagawa2019groupdro,
+  title   = {Distributionally Robust Neural Networks for Group Shifts: On the
+             Importance of Regularization for Worst-Case Generalization},
+  author  = {Sagawa, Shiori and Koh, Pang Wei and Hashimoto, Tatsunori B. and
+             Liang, Percy},
+  journal = {arXiv preprint arXiv:1911.08731},
+  year    = {2019},
+  eprint  = {1911.08731},
+  archivePrefix = {arXiv}
+}
+
+@article{wu2025beyond,
+  title   = {Beyond Spurious Signals: Debiasing Multimodal Large Language Models
+             via Counterfactual Inference and Adaptive Expert Routing},
+  author  = {Wu, Zichen and Huang, Hsiu-Yuan and Wu, Yunfang},
+  journal = {arXiv preprint arXiv:2509.15361},
+  year    = {2025},
+  eprint  = {2509.15361},
+  archivePrefix = {arXiv}
+}
+
+@article{shuieh2025robustness,
+  title   = {Assessing Robustness to Spurious Correlations in Post-Training
+             Language Models},
+  author  = {Shuieh, Julia and Singhal, Prasann and Shanker, Apaar and
+             Heyer, John},
+  journal = {arXiv preprint arXiv:2505.05704},
+  year    = {2025},
+  eprint  = {2505.05704},
+  archivePrefix = {arXiv}
+}
+
+% ===================================================================
+% PLACEHOLDERS -- NOT VERIFIED. DO NOT SUBMIT WITHOUT CHECKING.
+% These are artefacts the project uses directly (model checkpoints,
+% corpora) whose canonical references were not retrieved through the
+% citation API. Each must be confirmed by a human before submission.
+% ===================================================================
+
+@misc{PLACEHOLDER_gratch2014daic_VERIFY,
+  title  = {The Distress Analysis Interview Corpus of human and computer
+            interviews},
+  author = {{VERIFY AUTHORS}},
+  year   = {2014},
+  note   = {PLACEHOLDER -- canonical DAIC-WOZ reference not retrieved via API.
+            Verify before submission.}
+}
+
+@misc{PLACEHOLDER_yang2023mentallama_VERIFY,
+  title  = {{MentaLLaMA}: Interpretable Mental Health Analysis on Social Media
+            with Large Language Models},
+  author = {{VERIFY AUTHORS}},
+  year   = {2023},
+  note   = {PLACEHOLDER -- not retrieved via API. Verify before submission.}
+}
+
+@misc{PLACEHOLDER_ji2022mentalbert_VERIFY,
+  title  = {{MentalBERT}: Publicly Available Pretrained Language Models for
+            Mental Healthcare},
+  author = {{VERIFY AUTHORS}},
+  year   = {2022},
+  note   = {PLACEHOLDER -- not retrieved via API. Verify before submission.}
+}
+
+@software{ai_research_skills,
+  title  = {AI Research Skills Library},
+  author = {{Orchestra Research}},
+  year   = {2025},
+  url    = {https://github.com/orchestra-research/AI-research-SKILLs}
+}
+
+% --- verified 2026-08-26 via arXiv API (queries logged in the session) ---
+
+@article{elazar2021amnesic,
+  title   = {Amnesic Probing: Behavioral Explanation with Amnesic Counterfactuals},
+  author  = {Elazar, Yanai and Ravfogel, Shauli and Jacovi, Alon and
+             Goldberg, Yoav},
+  journal = {Transactions of the Association for Computational Linguistics},
+  year    = {2021},
+  eprint  = {2006.00995},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+@inproceedings{belrose2023leace,
+  title     = {{LEACE}: Perfect Linear Concept Erasure in Closed Form},
+  author    = {Belrose, Nora and Schneider-Joseph, David and
+               Ravfogel, Shauli and Cotterell, Ryan and Raff, Edward and
+               Biderman, Stella},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year      = {2023},
+  eprint    = {2306.03819},
+  archivePrefix = {arXiv}
+}
+
+@article{dobrzeniecka2025improving,
+  title   = {Improving Causal Interventions in Amnesic Probing with Mean
+             Projection or {LEACE}},
+  author  = {Dobrzeniecka, Alicja and Fokkens, Antske and Sommerauer, Pia},
+  journal = {arXiv preprint arXiv:2506.11673},
+  year    = {2025},
+  eprint  = {2506.11673},
+  archivePrefix = {arXiv}
+}
+
+% --- RL post-training references, verified 2026-08-26 via arXiv API ---
+
+@article{zhong2026shortcuts,
+  title   = {From Shortcuts to Reasoning: Robust Post-Training of Theory of Mind
+             with Reinforcement Learning},
+  author  = {Zhong, Jike and Lai, Yuxiang and Li, Ming and Li, Yuheng and
+             Liu, Wuao},
+  journal = {arXiv preprint arXiv:2606.09092},
+  year    = {2026}, eprint = {2606.09092}, archivePrefix = {arXiv}
+}
+
+@article{ye2025prism,
+  title   = {Rectifying Shortcut Behaviors in Preference-based Reward Learning},
+  author  = {Ye, Wenqian and Zheng, Guangtao and Zhang, Aidong},
+  journal = {arXiv preprint arXiv:2510.19050},
+  year    = {2025}, eprint = {2510.19050}, archivePrefix = {arXiv}
+}
+
+@article{feng2026c2po,
+  title   = {{C2PO}: Diagnosing and Disentangling Bias Shortcuts in {LLMs}},
+  author  = {Feng, Xuan and An, Bo and Gu, Tianlong and Chang, Liang and
+             Hao, Fengrui},
+  journal = {arXiv preprint arXiv:2512.23430},
+  year    = {2026}, eprint = {2512.23430}, archivePrefix = {arXiv}
+}
+
+@article{gamingverifiers2026,
+  title   = {{LLMs} Gaming Verifiers: {RLVR} can Lead to Reward Hacking},
+  author  = {{see arXiv:2604.15149}},
+  journal = {arXiv preprint arXiv:2604.15149},
+  year    = {2026}, eprint = {2604.15149}, archivePrefix = {arXiv},
+  note    = {author list not retrieved via API -- verify before submission}
+}

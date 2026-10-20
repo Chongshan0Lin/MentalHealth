@@ -1,0 +1,178 @@
+{
+  "frozen_at": "2026-08-24T20:16:24-05:00",
+  "caveat": "RETROACTIVE. INTERVENTION_DESIGN.md \u00a77 placed the freeze before any method ran; it did not happen then. The suite changed during the campaign (see per-artefact `changed_since`). This manifest guarantees reproducibility and forward stability, NOT that the targets were fixed before results were seen.",
+  "artefacts": {
+    "source_transcripts": {
+      "path": "data/processed/daic_conditions.jsonl",
+      "sha256": "5d86f797f5e5467abca897ea89dd8a4250c220b93cceb0c48d7e9b49cfca1ece",
+      "rows": 188
+    },
+    "e5_construct_pairs": {
+      "path": "experiments/suite/results/e5_construct_pairs.jsonl",
+      "sha256": "8eb9ea15f880de73427a245fb32a09757220d9717d7e6c0cb8c094f0a4dbafde",
+      "rows": 200,
+      "created": "2026-08-23",
+      "by": "experiments/suite/code/build_suite.py",
+      "params": {
+        "N_PAIRS": 200,
+        "SPAN_TOL": 15,
+        "seed": 0
+      },
+      "changed_since": "no",
+      "consumed_by": [
+        "I3 (E5 base + P1)",
+        "I3 variants (D1/D1m)",
+        "I5 (E5 under CoT)"
+      ]
+    },
+    "e2a_conflict_v1_75feat": {
+      "path": "experiments/suite/results/e2a_natural_conflict.json",
+      "sha256": "4c871f3ae72cb5d060c7f0f305978fc14b020f0169968e76bc1ef39e0f0b56fc",
+      "items": 123,
+      "created": "2026-08-23",
+      "by": "experiments/suite/code/build_suite.py",
+      "params": {
+        "features": 75,
+        "probe": "A2a all prompt IDs",
+        "conflict_n": 29,
+        "test_split_n": 5
+      },
+      "changed_since": "SUPERSEDED by v2 on 2026-08-24",
+      "cause": "28 of the 75 features were found to be backchannels, not questions; the question-only probe scores higher (0.773 vs 0.753)",
+      "consumed_by": []
+    },
+    "e2a_conflict_v2_47feat": {
+      "path": "experiments/suite/results/e2a_natural_conflict_q47.json",
+      "sha256": "60877d36c7c0418abc5004abd3729cd9f71ff80b1cf5687f43974bda2948a448",
+      "items": 123,
+      "created": "2026-08-24",
+      "by": "inline refit, logs/a2a_refit_47.log",
+      "params": {
+        "features": 47,
+        "probe": "question-like only",
+        "cv_auc": 0.773,
+        "conflict_n": 28,
+        "test_split_n": 6
+      },
+      "changed_since": "no",
+      "consumed_by": []
+    },
+    "e4a_clusters": {
+      "path": "experiments/suite/results/e4a_prompt_clusters.json",
+      "sha256": "88bbce6a2f19a1b57fc2c1086c9d1872e92c8f6162523cb3674af2fff3b40e75",
+      "keys": [
+        "clusters",
+        "dominant_cluster",
+        "of_prompt"
+      ],
+      "n_keys": 3,
+      "created": "2026-08-23",
+      "by": "experiments/suite/code/build_e4a_clusters.py",
+      "params": {
+        "prompts": 47,
+        "clusters": 9,
+        "partition": "hand-authored, validated exhaustive+disjoint"
+      },
+      "changed_since": "no",
+      "consumed_by": [
+        "I4 (cluster ablation)",
+        "I2 (biographical candidate pool for E3 matching)"
+      ]
+    },
+    "e4a_prompt_kind": {
+      "path": "experiments/suite/results/e4a_prompt_kind.json",
+      "sha256": "e4354c6edcc6e2f824c6408ad510c78fbdfe3f1873d5dff4c32a2ff12cb2d66e",
+      "keys": [
+        "backchannel_like",
+        "question_like"
+      ],
+      "n_keys": 2,
+      "created": "2026-08-23",
+      "by": "inline, logs/build_suite.log follow-up",
+      "params": {
+        "question_like": 47,
+        "backchannel_like": 28
+      },
+      "changed_since": "no",
+      "consumed_by": [
+        "I2 (E3 pool selection)",
+        "I6 (M1/M2 bias model)",
+        "e2a v2 refit"
+      ]
+    },
+    "e4a_clusters_SUPERSEDED": {
+      "path": "experiments/suite/results/e4a_prompt_clusters_PROPOSAL.json",
+      "sha256": "cc4fbe02b25bd97c062ce394db2a64b546b314610abe9c5040d9ac8c71cb2613",
+      "keys": [
+        "assignment",
+        "needs_review"
+      ],
+      "n_keys": 2,
+      "created": "2026-08-23",
+      "by": "experiments/suite/code/build_suite.py",
+      "changed_since": "SUPERSEDED same day",
+      "cause": "keyword matching left 39/75 unassigned because 28 were backchannels",
+      "consumed_by": []
+    },
+    "e3_pools": {
+      "path": "experiments/i2-e3-matched-and-prompting/results/e3_pools.json",
+      "sha256": "8fd4497d4a14d464b67108bd2eb483e49afca72ee5c1e037a8d2adf165032b24",
+      "keys": [
+        "cf_depression",
+        "cf_empirical",
+        "cf_empirical_matched",
+        "cf_neutral",
+        "cf_neutral_matched"
+      ],
+      "n_keys": 5,
+      "created": "2026-08-24",
+      "by": "experiments/i2-e3-matched-and-prompting/code/run_i2.py",
+      "params": {
+        "target_words": 38,
+        "selection": "length within 1 word (constraint), association (objective)"
+      },
+      "changed_since": "selection rule was corrected BEFORE the scoring run: the first version matched on length alone and swapped OR-10.4 prompts for OR-2.3 ones. No results were produced under the first version.",
+      "consumed_by": [
+        "I2 (E3 arms)"
+      ]
+    },
+    "a2b_pool_definitions": {
+      "path": "experiments/a2-ellie-counterfactual/code/run_a2b.py",
+      "sha256": "1b5f0e7e344d725f31cd3d1d1b0e2ac349d52dc696b047492cb15a39f726302c",
+      "bytes": 6750,
+      "created": "2026-08-20",
+      "params": {
+        "cf_depression": 38,
+        "cf_neutral": 50,
+        "cf_empirical": 31
+      },
+      "changed_since": "no",
+      "consumed_by": [
+        "A2b",
+        "I1",
+        "B0-mech",
+        "I5",
+        "I6",
+        "readout controls"
+      ]
+    },
+    "a2a_associations": {
+      "path": "experiments/a2-ellie-counterfactual/results/a2a_prompt_label_association.json",
+      "sha256": "40cd2450987f1932d01a94f3bfb60b02fce5622d5d5a29ee28f2449a542f4a9b",
+      "keys": [
+        "base_rate",
+        "n_significant_bh",
+        "n_tested",
+        "n_transcripts",
+        "records"
+      ],
+      "n_keys": 5
+    }
+  },
+  "not_frozen": {
+    "E1_IID": "derived at analysis time from a1_*/a2b_* jsonl; no separate file",
+    "E2b_constructed_conflict": "derived from a2b arms crossed against gold; no separate file",
+    "E4a_protocol_shift": "NOT CONSTRUCTIBLE from DAIC \u2014 protocol shift and label shift are the same variable in an adaptive interview (see ../analysis.md). Replaced by I4 cluster-resolved ablation, which returned a null.",
+    "E4b_cross_corpus": "never built; depends on L3, which remains asserted rather than measured"
+  }
+}

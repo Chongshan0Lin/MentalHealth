@@ -1,0 +1,15 @@
+mmpsy MentaLLaMA
+mmpsy Menta
+mmpsy OSim-8B
+mmpsy HumanOmniV2
+ptsd MentaLLaMA
+ptsd Menta
+ptsd qwen3_base
+ptsd OSim-8B
+ptsd HumanOmniV2
+irf qwen3_base
+irf OSim-8B
+irf OmniSapiens-SFT
+irf OmniSapiens-RL
+irf OmniSapiens2.0
+irf HumanOmniV2

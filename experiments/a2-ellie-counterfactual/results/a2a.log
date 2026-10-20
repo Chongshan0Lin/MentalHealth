@@ -1,0 +1,50 @@
+transcripts with scripted IDs: 123   depression rate: 0.228
+distinct IDs: 163   tested (asked to 20-103 participants): 75
+
+================================================================================================================
+SIGNIFICANT AFTER BH CORRECTION: 4 / 75
+================================================================================================================
+prompt id                     n  dep|asked  dep|not     OR         p         q  question
+----------------------------------------------------------------------------------------------------------------
+why_seek_help                34      0.559    0.101  11.26  3.33e-07  2.47e-05  what got you to seek help
+therapy_going                35      0.543    0.102  10.42  6.60e-07  2.47e-05  do you still go to therapy now
+when_diagnosed               32      0.531    0.121   8.24  7.80e-06  1.95e-04  how long ago were you diagnosed
+trigger                      24      0.583    0.141   8.50  2.16e-05  4.05e-04  are they triggered by something
+
+================================================================================================================
+STRONGEST ASSOCIATIONS BY EFFECT SIZE (raw p < .05, either direction)
+================================================================================================================
+  why_seek_help              OR=11.26 (MORE depressed)  0.56 vs 0.10   what got you to seek help
+  therapy_going              OR=10.42 (MORE depressed)  0.54 vs 0.10   do you still go to therapy now
+  trigger                    OR= 8.50 (MORE depressed)  0.58 vs 0.14   are they triggered by something
+  when_diagnosed             OR= 8.24 (MORE depressed)  0.53 vs 0.12   how long ago were you diagnosed
+  family_relationship        OR= 0.25 (LESS depressed)  0.17 vs 0.44   tell me about your relationship with you
+  bouts_symptoms             OR= 4.00 (MORE depressed)  0.44 vs 0.17   when was the last time that happened
+  feelbadly                  OR= 0.27 (LESS depressed)  0.11 vs 0.32   tell me about a time when someone made y
+  BF_describe                OR= 0.28 (LESS depressed)  0.18 vs 0.45   how would your best friend describe you
+  therapy_changes            OR= 3.62 (MORE depressed)  0.45 vs 0.18   what sort of changes have you noticed si
+  right2                     OR= 3.19 (MORE depressed)  0.41 vs 0.18   right
+  been_hard                  OR= 3.03 (MORE depressed)  0.36 vs 0.15   that sounds really hard
+  therapy_useful             OR= 2.96 (MORE depressed)  0.40 vs 0.18   do you feel like therapy is useful
+
+wrote /data/cl195/NeurIPS_workshop/experiments/a2-ellie-counterfactual/results/a2a_prompt_label_association.json
+Traceback (most recent call last):
+  File "/data/cl195/NeurIPS_workshop/experiments/a2-ellie-counterfactual/code/a2a_prompt_label_association.py", line 140, in <module>
+    main()
+  File "/data/cl195/NeurIPS_workshop/experiments/a2-ellie-counterfactual/code/a2a_prompt_label_association.py", line 125, in main
+    p = cross_val_predict(
+        ^^^^^^^^^^^^^^^^^^
+  File "/data/cl195/conda/envs/sc-shortcut/lib/python3.11/site-packages/sklearn/utils/_param_validation.py", line 218, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data/cl195/conda/envs/sc-shortcut/lib/python3.11/site-packages/sklearn/model_selection/_validation.py", line 1215, in cross_val_predict
+    raise ValueError("cross_val_predict only works for partitions")
+ValueError: cross_val_predict only works for partitions
+
+wrote /data/cl195/NeurIPS_workshop/experiments/a2-ellie-counterfactual/results/a2a_prompt_label_association.json
+
+================================================================================================================
+QUESTION-SELECTION-ONLY PREDICTOR (binary asked/not-asked matrix, no text at all)
+================================================================================================================
+  features: 75 prompt IDs   n=123   majority baseline = 0.772
+  CV AUC = 0.753  (sd 0.025 over 10 CV seeds;  shuffled 0.500)

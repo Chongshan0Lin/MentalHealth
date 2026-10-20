@@ -1,0 +1,37 @@
+{
+  "cf_depression": [
+    "have you been diagnosed with depression",
+    "have you ever been diagnosed with p_t_s_d",
+    "how have you been feeling lately",
+    "how easy is it for you to get a good night's sleep",
+    "how are you at controlling your temper"
+  ],
+  "cf_neutral": [
+    "where are you from originally",
+    "what did you study at school",
+    "i'm sure you can tell by my shoes i'm not much of a world explorer do you travel a lot",
+    "what are some things you really like about l_a",
+    "what are some things you don't really like about l_a"
+  ],
+  "cf_empirical": [
+    "what got you to seek help",
+    "do you still go to therapy now",
+    "are they triggered by something",
+    "how long ago were you diagnosed",
+    "when was the last time that happened"
+  ],
+  "cf_neutral_matched": [
+    "tell me how you spend your ideal weekend",
+    "how often do you go back to your hometown",
+    "what do you enjoy about traveling",
+    "i'd love to hear about one of your trips",
+    "when did you move to l_a"
+  ],
+  "cf_empirical_matched": [
+    "what sort of changes have you noticed since you've been going to therapy",
+    "do you still go to therapy now",
+    "are they triggered by something",
+    "how long ago were you diagnosed",
+    "what got you to seek help"
+  ]
+}

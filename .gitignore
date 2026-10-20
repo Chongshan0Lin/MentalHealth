@@ -1,0 +1,44 @@
+# ─────────────────────────────────────────────────────────────────────────
+# RESTRICTED DATA — never commit.
+# DAIC-WOZ is distributed under a use agreement that forbids redistribution,
+# and the transcripts are clinical interviews with identifiable participants.
+# IMHI is Reddit-derived and its terms forbid republishing post content.
+# ─────────────────────────────────────────────────────────────────────────
+data/
+checkpoints/
+*/data/
+experiments/*/data/
+
+# Result files that embed verbatim transcripts (most results do not — they
+# store only log-probabilities — but these three carry the source text):
+experiments/suite/results/e5_construct_pairs.jsonl
+experiments/i8-grpo-mitigation/data/
+runs/
+
+# Logs: the GRPO runs were configured with log_completions=True, so the
+# training logs contain full transcripts (394k lines matching "Participant:").
+logs/
+
+# Derived artefacts that are large and/or trained on restricted data
+*.npz
+*.safetensors
+*.bin
+*.pt
+experiments/*/results/ckpt_*/
+repos/
+
+# Environment and tooling
+.claude/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*-crop.pdf
+
+# Local secrets (kept outside the repo, listed defensively)
+*.env
+.git-credentials
+
+# Model-generated chain-of-thought describing individual participants'
+# clinical presentation. Not verbatim transcript, but still person-level
+# clinical content; the paper's CoT numbers come from the aggregates.
+experiments/i5-p2-cot/results/e5_cot_*.jsonl

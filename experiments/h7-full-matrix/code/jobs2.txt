@@ -1,0 +1,6 @@
+mmpsy MentaLLaMA
+mmpsy OSim-8B
+ptsd OSim-8B
+irf OSim-8B
+irf OmniSapiens-RL
+irf HumanOmniV2

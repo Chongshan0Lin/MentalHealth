@@ -1,0 +1,342 @@
+{
+  "assignment": {
+    "BF_describe": "relationships",
+    "Ellie17Dec2012_07": "unclustered",
+    "Ellie17Dec2012_10": "biographical",
+    "adapted_LA": "biographical",
+    "avoid": "unclustered",
+    "aw": "unclustered",
+    "awesome": "unclustered",
+    "been_hard": "trauma_event",
+    "behavior_changes": "unclustered",
+    "bouts_symptoms": "trauma_event",
+    "change_directions": "unclustered",
+    "compares_LA": "biographical",
+    "cool3": "unclustered",
+    "describe_felt": "affect_symptom",
+    "difficult": "trauma_event",
+    "dont_like_LA": "biographical",
+    "downer": "unclustered",
+    "dream_job": "biographical",
+    "easy_parent": "relationships",
+    "family_relationship": "relationships",
+    "feelbadly": "affect_symptom",
+    "feelguilty": "affect_symptom",
+    "give_example": "unclustered",
+    "good_hear": "unclustered",
+    "great_situation": "unclustered",
+    "happy_didthat": "unclustered",
+    "hard_decision": "trauma_event",
+    "hmm_downer": "unclustered",
+    "ideal_weekendC": "biographical",
+    "im_sorry": "unclustered",
+    "influence_positive": "unclustered",
+    "isee_downer": "unclustered",
+    "landed_trouble": "unclustered",
+    "like_about_LA": "biographical",
+    "like_what": "unclustered",
+    "makes_sense": "unclustered",
+    "memorableB": "unclustered",
+    "memory_erase": "trauma_event",
+    "mind": "unclustered",
+    "mm": "unclustered",
+    "nice": "unclustered",
+    "often_backB": "biographical",
+    "parent_best": "relationships",
+    "parent_differences": "relationships",
+    "parent_hardest": "trauma_event",
+    "regret": "trauma_event",
+    "right2": "unclustered",
+    "self_change": "unclustered",
+    "sleep_affects": "affect_symptom",
+    "sorry_hear": "unclustered",
+    "sounds_interesting": "unclustered",
+    "still_working_on_X": "biographical",
+    "symptoms_cope": "unclustered",
+    "tell_about_that": "biographical",
+    "that_sucks": "unclustered",
+    "thats_great": "unclustered",
+    "therapy_changes": "clinical_history",
+    "therapy_going": "clinical_history",
+    "therapy_useful": "clinical_history",
+    "travel_changed": "biographical",
+    "travel_trips": "biographical",
+    "trigger": "trauma_event",
+    "uh_huh": "unclustered",
+    "understand": "unclustered",
+    "when_LA": "biographical",
+    "when_diagnosed": "clinical_history",
+    "why2": "unclustered",
+    "why_LA": "biographical",
+    "why_seek_help": "help_seeking",
+    "wild_laughter3": "unclustered",
+    "wild_laughter5": "unclustered",
+    "wow": "unclustered",
+    "yeah2": "unclustered",
+    "yeah3": "unclustered",
+    "yeah_downer": "unclustered"
+  },
+  "needs_review": [
+    {
+      "id": "Ellie17Dec2012_07",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "what would you say are some of your best qualities"
+    },
+    {
+      "id": "avoid",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "could you have done anything to avoid it"
+    },
+    {
+      "id": "aw",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "aw"
+    },
+    {
+      "id": "awesome",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "awesome"
+    },
+    {
+      "id": "behavior_changes",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "have you noticed any changes in your behavior or thoughts lately"
+    },
+    {
+      "id": "change_directions",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "what made you decide to do that"
+    },
+    {
+      "id": "cool3",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "cool"
+    },
+    {
+      "id": "downer",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "okay"
+    },
+    {
+      "id": "give_example",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "can you give me an example of that"
+    },
+    {
+      "id": "good_hear",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "that's so good to hear"
+    },
+    {
+      "id": "great_situation",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "that sounds like a great situation"
+    },
+    {
+      "id": "happy_didthat",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "are you happy you did that"
+    },
+    {
+      "id": "hmm_downer",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "hmm"
+    },
+    {
+      "id": "im_sorry",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "i'm sorry"
+    },
+    {
+      "id": "influence_positive",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "who's someone that's been a positive influence in your life"
+    },
+    {
+      "id": "isee_downer",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "i see"
+    },
+    {
+      "id": "landed_trouble",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "has that gotten you in trouble"
+    },
+    {
+      "id": "like_what",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "like what"
+    },
+    {
+      "id": "makes_sense",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "that makes sense"
+    },
+    {
+      "id": "memorableB",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "what's one of your most memorable experiences"
+    },
+    {
+      "id": "memory_erase",
+      "why": "AMBIGUOUS",
+      "candidates": [
+        "trauma_event",
+        "biographical"
+      ],
+      "question": "tell me about an event or something that you wish you could erase from your memory"
+    },
+    {
+      "id": "mind",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "whatever comes to your mind"
+    },
+    {
+      "id": "mm",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "mm"
+    },
+    {
+      "id": "nice",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "nice"
+    },
+    {
+      "id": "parent_hardest",
+      "why": "AMBIGUOUS",
+      "candidates": [
+        "trauma_event",
+        "relationships"
+      ],
+      "question": "what's the hardest thing about being a parent"
+    },
+    {
+      "id": "right2",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "right"
+    },
+    {
+      "id": "self_change",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "what are some things you wish you could change about yourself"
+    },
+    {
+      "id": "sorry_hear",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "i'm sorry to hear that"
+    },
+    {
+      "id": "sounds_interesting",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "that sounds interesting"
+    },
+    {
+      "id": "symptoms_cope",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "how do you cope with them"
+    },
+    {
+      "id": "that_sucks",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "that sucks"
+    },
+    {
+      "id": "thats_great",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "that's great"
+    },
+    {
+      "id": "therapy_useful",
+      "why": "AMBIGUOUS",
+      "candidates": [
+        "clinical_history",
+        "affect_symptom"
+      ],
+      "question": "do you feel like therapy is useful"
+    },
+    {
+      "id": "uh_huh",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "uh huh"
+    },
+    {
+      "id": "understand",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "i understand"
+    },
+    {
+      "id": "why2",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "why"
+    },
+    {
+      "id": "wild_laughter3",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "(laughter)"
+    },
+    {
+      "id": "wild_laughter5",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "(laughter)"
+    },
+    {
+      "id": "wow",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "wow"
+    },
+    {
+      "id": "yeah2",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "yeah"
+    },
+    {
+      "id": "yeah3",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "yeah"
+    },
+    {
+      "id": "yeah_downer",
+      "why": "NO MATCH",
+      "candidates": [],
+      "question": "yeah"
+    }
+  ]
+}

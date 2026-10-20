@@ -1,0 +1,784 @@
+[
+    {
+        "key": "SU2NCKQ8",
+        "version": 55,
+        "library": {
+            "type": "user",
+            "id": 14436928,
+            "name": "Chongshan0Lin",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/chongshan0lin",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/users/14436928/items/SU2NCKQ8",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/chongshan0lin/items/SU2NCKQ8",
+                "type": "text/html"
+            },
+            "up": {
+                "href": "https://api.zotero.org/users/14436928/items/VPLDNP6C",
+                "type": "application/json"
+            }
+        },
+        "meta": {
+            "numChildren": 0
+        },
+        "data": {
+            "key": "SU2NCKQ8",
+            "version": 55,
+            "parentItem": "VPLDNP6C",
+            "itemType": "note",
+            "note": "<div data-schema-version=\"8\"><p>In this paper, it proposes, Local and Stitch. This method merges fine tuned models’ parameters by identifying a small set of task related parameter regions and merge them into the shared pretrained model.<span style=\"color: rgb(0, 0, 0)\"> The paper shows that these localized regions are extremely small around&nbsp;</span><strong><span style=\"color: rgb(0, 0, 0)\">1% of total parameters</span></strong><span style=\"color: rgb(0, 0, 0)\">. However, the merged model still recover nearly all finetuned performance, which leads to performance improvement over multiple benchmarks. It also argues that this approach helps preserve pretrained knowledge, enables strong model compression, and makes continual skill composition more efficient.&nbsp;</span></p>\n</div>",
+            "tags": [],
+            "relations": {},
+            "dateAdded": "2026-04-02T16:32:40Z",
+            "dateModified": "2026-04-02T16:35:44Z"
+        }
+    },
+    {
+        "key": "VPLDNP6C",
+        "version": 50,
+        "library": {
+            "type": "user",
+            "id": 14436928,
+            "name": "Chongshan0Lin",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/chongshan0lin",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/users/14436928/items/VPLDNP6C",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/chongshan0lin/items/VPLDNP6C",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "numChildren": 1
+        },
+        "data": {
+            "key": "VPLDNP6C",
+            "version": 50,
+            "itemType": "document",
+            "title": "Localize-and-Stitch: Efficient Model Merging via Sparse Task Arithmetic",
+            "creators": [],
+            "abstractNote": "",
+            "type": "",
+            "date": "",
+            "publisher": "",
+            "place": "",
+            "DOI": "",
+            "citationKey": "",
+            "url": "",
+            "accessDate": "",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [],
+            "collections": [
+                "P2VHEP87"
+            ],
+            "relations": {},
+            "dateAdded": "2026-04-02T16:32:30Z",
+            "dateModified": "2026-04-02T16:32:35Z"
+        }
+    },
+    {
+        "key": "95P4JF2U",
+        "version": 48,
+        "library": {
+            "type": "user",
+            "id": 14436928,
+            "name": "Chongshan0Lin",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/chongshan0lin",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/users/14436928/items/95P4JF2U",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/chongshan0lin/items/95P4JF2U",
+                "type": "text/html"
+            },
+            "up": {
+                "href": "https://api.zotero.org/users/14436928/items/W9H6FLGV",
+                "type": "application/json"
+            }
+        },
+        "meta": {
+            "numChildren": 0
+        },
+        "data": {
+            "key": "95P4JF2U",
+            "version": 48,
+            "parentItem": "W9H6FLGV",
+            "itemType": "note",
+            "note": "<div data-schema-version=\"8\"><p>This paper uses a fair algorithm to make LLM’s prediction on classification tasks related to sensitive groups more fair. Specifically, given the task input, the model first make prediction, where we can access the logit/probability of each ourput (e.g. male 0.6, female 0.4, or white 0.3, asian 0.2, etc.). The paper then fits them to the label and sensitive groups’ attributes with logistic regression and obtain the calibration. Finally, given the calibration, the fair algorithm take it as probability vector <span style=\"color: rgb(0, 0, 0)\">input to fair-ML method</span>. This fair algorithm can be instantiated with multiple in-processing or post-processing algorithms. <span style=\"color: rgb(0, 0, 0)\">Across several datasets, fairness criteria, and both open and closed LLMs, the paper shows that this approach gives strong fairness–accuracy tradeoffs, especially in low-data settings where the low-dimensional extracted features help reduce sample complexity.</span></p>\n</div>",
+            "tags": [],
+            "relations": {},
+            "dateAdded": "2026-04-02T15:02:46Z",
+            "dateModified": "2026-04-02T16:32:03Z"
+        }
+    },
+    {
+        "key": "W9H6FLGV",
+        "version": 33,
+        "library": {
+            "type": "user",
+            "id": 14436928,
+            "name": "Chongshan0Lin",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/chongshan0lin",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/users/14436928/items/W9H6FLGV",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/chongshan0lin/items/W9H6FLGV",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "creatorSummary": "Xian",
+            "numChildren": 1
+        },
+        "data": {
+            "key": "W9H6FLGV",
+            "version": 33,
+            "itemType": "document",
+            "title": "Group Fairness Meets the Black Box: Enabling Fair Algorithms on Closed LLMs via Post-Processing",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "Ruicheng",
+                    "lastName": "Xian"
+                }
+            ],
+            "abstractNote": "Instruction fine-tuned large language models (LLMs) enable a simple zero-shot or few-shot prompting paradigm, also known as in-context learning, for building prediction models. This convenience, combined with continued advances in LLM capability, has the potential to drive their adoption across a broad range of domains, including high-stakes applications where group fairness—preventing disparate impacts across demographic groups—is essential. The majority of existing approaches to enforcing group fairness on LLM-based classifiers rely on traditional fair algorithms applied via model fine-tuning or head-tuning on final-layer embeddings, but they are no longer applicable to closed-weight LLMs under the in-context learning setting, which include some of the most capable commercial models today, such as GPT-4, Gemini, and Claude. In this paper, we propose a framework for deriving fair classifiers from closed-weight LLMs via prompting: the LLM is treated as a feature extractor, and features are elicited from its probabilistic predictions (e.g., token log probabilities) using prompts strategically designed for the specified fairness criterion to obtain sufficient statistics for fair classification; a fair algorithm is then applied to these features to train a lightweight fair classifier in a post-hoc manner. Experiments on five datasets, including three tabular ones, demonstrate strong accuracy-fairness tradeoffs for the classifiers derived by our framework from both open-weight and closed-weight LLMs; in particular, our framework is data-efficient and outperforms fair classifiers trained on LLM embeddings (i.e., head-tuning) or from scratch on raw tabular features.",
+            "type": "",
+            "date": "",
+            "publisher": "ICLR 2026(Rej)",
+            "place": "",
+            "DOI": "",
+            "citationKey": "",
+            "url": "",
+            "accessDate": "",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [],
+            "collections": [
+                "P2VHEP87"
+            ],
+            "relations": {},
+            "dateAdded": "2026-04-02T15:01:56Z",
+            "dateModified": "2026-04-02T15:02:42Z"
+        }
+    },
+    {
+        "key": "JSAD4QN8",
+        "version": 25,
+        "library": {
+            "type": "user",
+            "id": 14436928,
+            "name": "Chongshan0Lin",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/chongshan0lin",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/users/14436928/items/JSAD4QN8",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/chongshan0lin/items/JSAD4QN8",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "creatorSummary": "Sharma et al.",
+            "parsedDate": "2023-01-01",
+            "numChildren": 0
+        },
+        "data": {
+            "key": "JSAD4QN8",
+            "version": 25,
+            "itemType": "journalArticle",
+            "title": "Human–AI collaboration enables more empathic conversations in text-based peer-to-peer mental health support",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "Ashish",
+                    "lastName": "Sharma"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Inna W.",
+                    "lastName": "Lin"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Adam S.",
+                    "lastName": "Miner"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "David C.",
+                    "lastName": "Atkins"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Tim",
+                    "lastName": "Althoff"
+                }
+            ],
+            "abstractNote": "Advances in artificial intelligence (AI) are enabling systems that augment and collaborate with humans to perform simple, mechanistic tasks such as scheduling meetings and grammar-checking text. However, such human–AI collaboration poses challenges for more complex tasks, such as carrying out empathic conversations, due to the difficulties that AI systems face in navigating complex human emotions and the open-ended nature of these tasks. Here we focus on peer-to-peer mental health support, a setting in which empathy is critical for success, and examine how AI can collaborate with humans to facilitate peer empathy during textual, online supportive conversations. We develop HAILEY, an AI-in-the-loop agent that provides just-in-time feedback to help participants who provide support (peer supporters) respond more empathically to those seeking help (support seekers). We evaluate HAILEY in a non-clinical randomized controlled trial with real-world peer supporters on TalkLife (N = 300), a large online peer-to-peer support platform. We show that our human–AI collaboration approach leads to a 19.6% increase in conversational empathy between peers overall. Furthermore, we find a larger, 38.9% increase in empathy within the subsample of peer supporters who self-identify as experiencing difficulty providing support. We systematically analyse the human–AI collaboration patterns and find that peer supporters are able to use the AI feedback both directly and indirectly without becoming overly reliant on AI while reporting improved self-efficacy post-feedback. Our findings demonstrate the potential of feedback-driven, AI-in-the-loop writing systems to empower humans in open-ended, social and high-stakes tasks such as empathic conversations.",
+            "publicationTitle": "Nature Machine Intelligence",
+            "publisher": "",
+            "place": "",
+            "date": "2023-01-01",
+            "volume": "5",
+            "issue": "1",
+            "section": "",
+            "partNumber": "",
+            "partTitle": "",
+            "pages": "46-57",
+            "series": "",
+            "seriesTitle": "",
+            "seriesText": "",
+            "journalAbbreviation": "Nature Machine Intelligence",
+            "DOI": "10.1038/s42256-022-00593-2",
+            "citationKey": "",
+            "url": "https://doi.org/10.1038/s42256-022-00593-2",
+            "accessDate": "",
+            "PMID": "",
+            "PMCID": "",
+            "ISSN": "2522-5839",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [],
+            "collections": [
+                "3A2MBHWP"
+            ],
+            "relations": {},
+            "dateAdded": "2025-12-17T04:30:41Z",
+            "dateModified": "2025-12-17T04:30:41Z"
+        }
+    },
+    {
+        "key": "DYKH8NYI",
+        "version": 23,
+        "library": {
+            "type": "user",
+            "id": 14436928,
+            "name": "Chongshan0Lin",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/chongshan0lin",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/users/14436928/items/DYKH8NYI",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/chongshan0lin/items/DYKH8NYI",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "creatorSummary": "Tian et al.",
+            "parsedDate": "2023",
+            "numChildren": 0
+        },
+        "data": {
+            "key": "DYKH8NYI",
+            "version": 23,
+            "itemType": "journalArticle",
+            "title": "Predicting the evolution of scientific communities by interpretable machine learning approaches",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "Yunpei",
+                    "lastName": "Tian"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Gang",
+                    "lastName": "Li"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Jin",
+                    "lastName": "Mao"
+                }
+            ],
+            "abstractNote": "Scientific communities serve as a fundamental structure of academic activity, and its evolutionary behavior also reveals the development of science. To track the evolution of scientific communities and dig into the mechanism behind it, we formulate the task of event-based Group Evolution Prediction and apply interpretable machine learning approaches to the task. Seven evolution events for prediction are defined based on the evolution chains of scientific communities detected from the collaboration network. By using a detailed feature set, including topological, external, core node, and temporal attributes, Extreme Gradient Boosting, and Random Forest are adopted for the prediction models. Experiments on the dataset of Library and Information Science shows that Random Forest performs the best, with the F1 scores of five events greater than 0.60. Shapley Additive exPlanations measure is applied to interpret the best model, i.e., quantify the contributions of features. It is observed that connectivity within a community has the most crucial influence, and community size, research topic consistency, research topic diversity, average node age, and the ratio of intermediary nodes play vital roles. The proposed methodology offers a solution to unearth the underlying mechanisms of the evolution of scientific communities, and the findings could be useful for scholars and policymakers to monitor scientific communities and take proactive actions.",
+            "publicationTitle": "Journal of Informetrics",
+            "publisher": "",
+            "place": "",
+            "date": "2023",
+            "volume": "17",
+            "issue": "2",
+            "section": "",
+            "partNumber": "",
+            "partTitle": "",
+            "pages": "101399",
+            "series": "",
+            "seriesTitle": "",
+            "seriesText": "",
+            "journalAbbreviation": "",
+            "DOI": "https://doi.org/10.1016/j.joi.2023.101399",
+            "citationKey": "",
+            "url": "https://www.sciencedirect.com/science/article/pii/S175115772300024X",
+            "accessDate": "",
+            "PMID": "",
+            "PMCID": "",
+            "ISSN": "1751-1577",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [
+                {
+                    "tag": "Collaboration network"
+                },
+                {
+                    "tag": "Machine learning"
+                },
+                {
+                    "tag": "Network evolution"
+                },
+                {
+                    "tag": "SHAP"
+                },
+                {
+                    "tag": "Scientific community"
+                }
+            ],
+            "collections": [
+                "ZMYICZLE"
+            ],
+            "relations": {},
+            "dateAdded": "2025-09-25T00:38:23Z",
+            "dateModified": "2025-09-25T00:38:23Z"
+        }
+    },
+    {
+        "key": "K36GJMW7",
+        "version": 21,
+        "library": {
+            "type": "user",
+            "id": 14436928,
+            "name": "Chongshan0Lin",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/chongshan0lin",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/users/14436928/items/K36GJMW7",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/chongshan0lin/items/K36GJMW7",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "creatorSummary": "Hsiao and Torvik",
+            "parsedDate": "2023-04-28",
+            "numChildren": 0
+        },
+        "data": {
+            "key": "K36GJMW7",
+            "version": 21,
+            "itemType": "journalArticle",
+            "title": "OpCitance: Citation contexts identified from the PubMed Central open access articles",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "Tzu-Kun",
+                    "lastName": "Hsiao"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Vetle I.",
+                    "lastName": "Torvik"
+                }
+            ],
+            "abstractNote": "OpCitance contains all the sentences from 2 million PubMed Central open-access (PMCOA) articles, with 137 million inline citations annotated (i.e., the “citation contexts”). Parsing out the references and citation contexts from the PMCOA XML files was non-trivial due to the diversity of referencing style. Only 0.5% citation contexts remain unidentified due to technical or human issues, e.g., references unmentioned by the authors in the text or improper XML nesting, which is more common among older articles (pre-2000). PubMed IDs (PMIDs) linked to inline citations in the XML files compared to citations harvested using the NCBI E-Utilities differed for 70.96% of the articles. Using an in-house citation matcher, called Patci, 6.84% of the referenced PMIDs were supplemented and corrected. OpCitance includes fewer total number of articles than the Semantic Scholar Open Research Corpus, but OpCitance has 160 thousand unique articles, a higher inline citation identification rate, and a more accurate reference mapping to PMIDs. We hope that OpCitance will facilitate citation context studies in particular and benefit text-mining research more broadly.",
+            "publicationTitle": "Scientific Data",
+            "publisher": "",
+            "place": "",
+            "date": "2023-04-28",
+            "volume": "10",
+            "issue": "1",
+            "section": "",
+            "partNumber": "",
+            "partTitle": "",
+            "pages": "243",
+            "series": "",
+            "seriesTitle": "",
+            "seriesText": "",
+            "journalAbbreviation": "Scientific Data",
+            "DOI": "10.1038/s41597-023-02134-x",
+            "citationKey": "",
+            "url": "https://doi.org/10.1038/s41597-023-02134-x",
+            "accessDate": "",
+            "PMID": "",
+            "PMCID": "",
+            "ISSN": "2052-4463",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [],
+            "collections": [
+                "W9GMF3T2"
+            ],
+            "relations": {},
+            "dateAdded": "2025-09-11T22:59:09Z",
+            "dateModified": "2025-09-11T22:59:09Z"
+        }
+    },
+    {
+        "key": "58Z2UB9F",
+        "version": 19,
+        "library": {
+            "type": "user",
+            "id": 14436928,
+            "name": "Chongshan0Lin",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/chongshan0lin",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/users/14436928/items/58Z2UB9F",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/chongshan0lin/items/58Z2UB9F",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "creatorSummary": "Sun",
+            "parsedDate": "2020-12",
+            "numChildren": 0
+        },
+        "data": {
+            "key": "58Z2UB9F",
+            "version": 19,
+            "itemType": "document",
+            "title": "PubMed Central Citation Context Dataset",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "Fengjun",
+                    "lastName": "Sun"
+                }
+            ],
+            "abstractNote": "",
+            "type": "",
+            "date": "2020-12",
+            "publisher": "Science Data Bank",
+            "place": "",
+            "DOI": "",
+            "citationKey": "",
+            "url": "https:",
+            "accessDate": "",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "Version Number: V1\nDOI: 10.11922/sciencedb.00393",
+            "tags": [],
+            "collections": [
+                "7TB9UGBK"
+            ],
+            "relations": {},
+            "dateAdded": "2025-09-11T22:55:19Z",
+            "dateModified": "2025-09-11T22:55:19Z"
+        }
+    },
+    {
+        "key": "W9ZURLS3",
+        "version": 16,
+        "library": {
+            "type": "user",
+            "id": 14436928,
+            "name": "Chongshan0Lin",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/chongshan0lin",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/users/14436928/items/W9ZURLS3",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/chongshan0lin/items/W9ZURLS3",
+                "type": "text/html"
+            },
+            "up": {
+                "href": "https://api.zotero.org/users/14436928/items/EEZPTBM9",
+                "type": "application/json"
+            }
+        },
+        "meta": {
+            "numChildren": 0
+        },
+        "data": {
+            "key": "W9ZURLS3",
+            "version": 16,
+            "parentItem": "EEZPTBM9",
+            "itemType": "note",
+            "note": "<div data-schema-version=\"8\"><p>Task: Improve LLM performance on table tasks.</p>\n<p>Approaches: 4 steps. Judge, Critic, Refiner, and Curator. </p>\n<p>Judge: Judge if the answer is correct.</p>\n<p>Critic: generating critiques for the identified errors.</p>\n<p>Refiner: Correcting the error given the critique.</p>\n<p>Curator: Distill the error and update the template tree of errors.</p>\n<p></p>\n<p>Result:</p>\n<p>Relatively good improvement over various datasets, over various benchmarks and compared to various baselines. Table Critic show, well, slight improvement.</p>\n</div>",
+            "tags": [],
+            "relations": {},
+            "dateAdded": "2025-05-25T21:49:20Z",
+            "dateModified": "2025-05-25T21:53:04Z"
+        }
+    },
+    {
+        "key": "EEZPTBM9",
+        "version": 11,
+        "library": {
+            "type": "user",
+            "id": 14436928,
+            "name": "Chongshan0Lin",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/chongshan0lin",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/users/14436928/items/EEZPTBM9",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/chongshan0lin/items/EEZPTBM9",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "numChildren": 1
+        },
+        "data": {
+            "key": "EEZPTBM9",
+            "version": 11,
+            "itemType": "document",
+            "title": "Table-Critic: A Multi-Agent Framework for Collaborative Criticism and Refinement in Table Reasoning",
+            "creators": [],
+            "abstractNote": "",
+            "type": "",
+            "date": "",
+            "publisher": "",
+            "place": "",
+            "DOI": "",
+            "citationKey": "",
+            "url": "",
+            "accessDate": "",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [],
+            "collections": [],
+            "relations": {},
+            "dateAdded": "2025-05-25T21:49:01Z",
+            "dateModified": "2025-05-25T21:49:10Z"
+        }
+    },
+    {
+        "key": "V8RQCUGP",
+        "version": 7,
+        "library": {
+            "type": "user",
+            "id": 14436928,
+            "name": "Chongshan0Lin",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/chongshan0lin",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/users/14436928/items/V8RQCUGP",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/chongshan0lin/items/V8RQCUGP",
+                "type": "text/html"
+            },
+            "up": {
+                "href": "https://api.zotero.org/users/14436928/items/V649A2WG",
+                "type": "application/json"
+            },
+            "enclosure": {
+                "type": "text/html",
+                "href": "https://api.zotero.org/users/14436928/items/V8RQCUGP/file/view"
+            }
+        },
+        "meta": {},
+        "data": {
+            "key": "V8RQCUGP",
+            "version": 7,
+            "parentItem": "V649A2WG",
+            "itemType": "attachment",
+            "linkMode": "imported_url",
+            "title": "Substantial undocumented infection facilitates the rapid dissemination of novel coronavirus (SARS-CoV-2) | Science",
+            "accessDate": "2024-06-06T07:28:03Z",
+            "url": "https://www.science.org/doi/full/10.1126/science.abb3221#F1",
+            "note": "",
+            "contentType": "text/html",
+            "charset": "utf-8",
+            "filename": "science.html",
+            "md5": "ea05f17611c7c2687397461587c8c1d7",
+            "mtime": 1717658883000,
+            "tags": [],
+            "relations": {},
+            "dateAdded": "2024-06-06T07:28:03Z",
+            "dateModified": "2024-06-06T07:28:03Z"
+        }
+    },
+    {
+        "key": "V649A2WG",
+        "version": 4,
+        "library": {
+            "type": "user",
+            "id": 14436928,
+            "name": "Chongshan0Lin",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/chongshan0lin",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/users/14436928/items/V649A2WG",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/chongshan0lin/items/V649A2WG",
+                "type": "text/html"
+            },
+            "attachment": {
+                "href": "https://api.zotero.org/users/14436928/items/V8RQCUGP",
+                "type": "application/json",
+                "attachmentType": "text/html"
+            }
+        },
+        "meta": {
+            "numChildren": 1
+        },
+        "data": {
+            "key": "V649A2WG",
+            "version": 4,
+            "itemType": "webpage",
+            "title": "Substantial undocumented infection facilitates the rapid dissemination of novel coronavirus (SARS-CoV-2) | Science",
+            "creators": [],
+            "abstractNote": "",
+            "websiteTitle": "",
+            "websiteType": "",
+            "date": "",
+            "publisher": "",
+            "place": "",
+            "DOI": "",
+            "citationKey": "",
+            "url": "https://www.science.org/doi/full/10.1126/science.abb3221#F1",
+            "accessDate": "2024-06-06T07:27:54Z",
+            "shortTitle": "",
+            "language": "",
+            "rights": "",
+            "extra": "",
+            "tags": [],
+            "collections": [],
+            "relations": {},
+            "dateAdded": "2024-06-06T07:27:54Z",
+            "dateModified": "2024-06-06T07:27:54Z"
+        }
+    }
+]
